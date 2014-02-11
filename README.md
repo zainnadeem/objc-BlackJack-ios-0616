@@ -7,8 +7,8 @@ BlackJack
 =======
 
 ### Goals 
-
-
+- Put it all together: Use inheritence to create a playable card game 
+- Work with random numbers 
 
 ### Instructions 
 
