@@ -11,7 +11,7 @@
 
 @interface FISDeck : NSObject
 
-@property (strong, nonatomic) NSMutableArray *cards; // the cards in the deck
+//@property (strong, nonatomic) NSMutableArray *cards; // the cards in the deck
 
 - (FISCard *)drawRandomCard;
 - (void)addCard:(FISCard *)card;

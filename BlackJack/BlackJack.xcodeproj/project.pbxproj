@@ -19,7 +19,7 @@
 		440FE75319464F8000C45D87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 440FE73B19464F8000C45D87 /* UIKit.framework */; };
 		440FE75B19464F8000C45D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 440FE75919464F8000C45D87 /* InfoPlist.strings */; };
 		440FE75D19464F8000C45D87 /* DeckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 440FE75C19464F8000C45D87 /* DeckTests.m */; };
-		440FE7671946513900C45D87 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 440FE7661946513900C45D87 /* PlayingCardDeck.m */; };
+		440FE7671946513900C45D87 /* PlayingCardDeckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 440FE7661946513900C45D87 /* PlayingCardDeckTests.m */; };
 		440FE76C1948AA4400C45D87 /* FISDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 440FE76B1948AA4400C45D87 /* FISDeck.m */; };
 		440FE76F1948AA6400C45D87 /* FISPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 440FE76E1948AA6400C45D87 /* FISPlayingCardDeck.m */; };
 		440FE7721948AECA00C45D87 /* FISBlackjackGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 440FE7711948AECA00C45D87 /* FISBlackjackGame.m */; };
@@ -57,7 +57,7 @@
 		440FE75819464F8000C45D87 /* BlackJackTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlackJackTests-Info.plist"; sourceTree = "<group>"; };
 		440FE75A19464F8000C45D87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		440FE75C19464F8000C45D87 /* DeckTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeckTests.m; sourceTree = "<group>"; };
-		440FE7661946513900C45D87 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeck.m; sourceTree = "<group>"; };
+		440FE7661946513900C45D87 /* PlayingCardDeckTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeckTests.m; sourceTree = "<group>"; };
 		440FE76A1948AA4400C45D87 /* FISDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDeck.h; sourceTree = "<group>"; };
 		440FE76B1948AA4400C45D87 /* FISDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDeck.m; sourceTree = "<group>"; };
 		440FE76D1948AA6400C45D87 /* FISPlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISPlayingCardDeck.h; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 			children = (
 				440FE7791949037A00C45D87 /* BlackjackGameTests.m */,
 				440FE75C19464F8000C45D87 /* DeckTests.m */,
-				440FE7661946513900C45D87 /* PlayingCardDeck.m */,
+				440FE7661946513900C45D87 /* PlayingCardDeckTests.m */,
 				440FE75719464F8000C45D87 /* Supporting Files */,
 			);
 			path = BlackJackTests;
@@ -328,7 +328,7 @@
 			files = (
 				440FE75D19464F8000C45D87 /* DeckTests.m in Sources */,
 				440FE77A1949037A00C45D87 /* BlackjackGameTests.m in Sources */,
-				440FE7671946513900C45D87 /* PlayingCardDeck.m in Sources */,
+				440FE7671946513900C45D87 /* PlayingCardDeckTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
