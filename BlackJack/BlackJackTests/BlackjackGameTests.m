@@ -112,6 +112,11 @@ describe(@"FISBlackjackGame", ^{
             expect(game.isBusted).to.beFalsy();
         });
     });
+    describe(@"hand", ^{
+        it(@"should have an NSMutableArray property hand", ^{
+            expect(game.hand).to.beKindOf([NSMutableArray class]);
+        });
+    });
     describe(@"handScore", ^{
         __block FISPlayingCard *aceClubs;
         __block FISPlayingCard *aceHearts;

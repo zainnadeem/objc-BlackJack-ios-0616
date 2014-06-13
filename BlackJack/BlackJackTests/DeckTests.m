@@ -49,18 +49,18 @@ describe(@"FISDeck", ^{
         });
     });
     
-    describe(@"addCard:", ^{
-        it(@"Should have an addCard Method", ^{
-            expect(deck).to.respondTo(@selector(addCard:));
-        });
-        it(@"Should add a card to the cards array", ^{
-            NSInteger cardsCount = [deck.cards count];
-            
-            [deck addCard:[[FISCard alloc] init]];
-            
-            expect(cardsCount + 1).to.equal([deck.cards count]);
-        });
-    });
+//    describe(@"addCard:", ^{
+//        it(@"Should have an addCard Method", ^{
+//            expect(deck).to.respondTo(@selector(addCard:));
+//        });
+//        it(@"Should add a card to the cards array", ^{
+//            NSInteger cardsCount = [deck.cards count];
+//            
+//            [deck addCard:[[FISCard alloc] init]];
+//            
+//            expect(cardsCount + 1).to.equal([deck.cards count]);
+//        });
+//    });
 });
 
 
