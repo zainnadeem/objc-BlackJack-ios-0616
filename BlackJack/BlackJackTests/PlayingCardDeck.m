@@ -1,6 +1,6 @@
 //
-//  DeckTests.m
-//  DeckTests
+//  PlayingCardDeck.m
+//  BlackJack
 //
 //  Created by Al Tyus on 6/9/14.
 //  Copyright (c) 2014 Flatiron School. All rights reserved.
@@ -11,19 +11,19 @@
 #import <Expecta.h>
 
 
-SpecBegin(Deck)
+SpecBegin(PlayingCardDeck)
 
-describe(@"Deck", ^{
+describe(@"PlayingCardDeck", ^{
     
     beforeAll(^{
-
+        
     });
     
     beforeEach(^{
         
     });
     
-    describe(@"removeFriends", ^{
+    describe(@"", ^{
         
         beforeEach(^{
         });
