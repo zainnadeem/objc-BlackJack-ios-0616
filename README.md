@@ -41,12 +41,12 @@ BlackjackGame should have the following properties and methods:
 ```objc
 
 - (id)init; // should initialize playingCardDeck with a new deck and set score and isBusted to default values
-- (void)deal; // should deal 2 new cards, add the cards to the hand, and add the card's value to the handscore.   
-- (void)hit; // should deal one additional card, add the card to the hand, and add the card's value to the handscore. If an Ace (11) would bust the player, counts an ace as a 1.  
+- (void)deal; // should deal 2 new cards and add the cards to the hand.   
+- (void)hit; // should deal one additional card, and add the card to the hand.   
 
 @property (strong, nonatomic) PlayingCardDeck *playingCardDeck; // returns the playingCardDeck in use 
-@property (strong, nonatomic) NSNumber *handScore; // returns the total value of cards in the hand 
-@property (strong, nonatomic) NSMutableArray *hand; 
+@property (strong, nonatomic) NSNumber *handScore; // returns the total value of cards in the hand. Remember: Aces can be 1 or 11. 
+@property (strong, nonatomic) NSMutableArray *hand; //returns the cards in the hand 
 @property (nonatomic) BOOL isBusted; // returns YES if handScore is more than 21
 @property (nonatomic) BOOL isBlackjack; // returns YES if handScore is 21
 
