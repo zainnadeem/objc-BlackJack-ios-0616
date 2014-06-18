@@ -30,6 +30,7 @@ describe(@"FISDeck", ^{
             expect(deck.cards).to.beKindOf([NSArray class]);
             expect([deck.cards count]).to.equal(0);
         });
+        
         pending(@"should be an array of cards");
     });
     
@@ -38,9 +39,9 @@ describe(@"FISDeck", ^{
             expect([deck drawRandomCard]).to.beKindOf([FISCard class]);
         });
         it(@"Should draw a random card", ^{
-            pending(@"Testing Randomness is very very hard so these are just some lightweight tests");
             
-            expect([deck drawRandomCard]).toNot.equal([deck drawRandomCard]);//expect drawinga  random card not to draw the same card twice in a row
+            pending(@"Testing Randomness is very very hard so these are just some lightweight tests");
+            expect([deck drawRandomCard]).toNot.equal([deck drawRandomCard]);//expect drawing a random card not to draw the same card twice in a row
         });
         it(@"Should remove the card from Cards after it's drawn", ^{
             FISCard *card = [deck drawRandomCard];
@@ -48,19 +49,6 @@ describe(@"FISDeck", ^{
             expect(deck.cards).toNot.contain(card);
         });
     });
-    
-//    describe(@"addCard:", ^{
-//        it(@"Should have an addCard Method", ^{
-//            expect(deck).to.respondTo(@selector(addCard:));
-//        });
-//        it(@"Should add a card to the cards array", ^{
-//            NSInteger cardsCount = [deck.cards count];
-//            
-//            [deck addCard:[[FISCard alloc] init]];
-//            
-//            expect(cardsCount + 1).to.equal([deck.cards count]);
-//        });
-//    });
 });
 
 
