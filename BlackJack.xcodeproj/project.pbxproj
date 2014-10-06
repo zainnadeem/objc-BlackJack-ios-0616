@@ -120,6 +120,10 @@
 			children = (
 				440FE74619464F8000C45D87 /* FISAppDelegate.h */,
 				440FE74719464F8000C45D87 /* FISAppDelegate.m */,
+				440FE73F19464F8000C45D87 /* BlackJack-Info.plist */,
+				440FE74019464F8000C45D87 /* InfoPlist.strings */,
+				440FE74319464F8000C45D87 /* main.m */,
+				440FE74519464F8000C45D87 /* BlackJack-Prefix.pch */,
 				440FE74919464F8000C45D87 /* Images.xcassets */,
 				440FE73E19464F8000C45D87 /* Supporting Files */,
 			);
@@ -129,10 +133,6 @@
 		440FE73E19464F8000C45D87 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				440FE73F19464F8000C45D87 /* BlackJack-Info.plist */,
-				440FE74019464F8000C45D87 /* InfoPlist.strings */,
-				440FE74319464F8000C45D87 /* main.m */,
-				440FE74519464F8000C45D87 /* BlackJack-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
