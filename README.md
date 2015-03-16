@@ -61,6 +61,22 @@ From the App Delegate
 
 ### Extra Credit
 
-Add a second AI player, and take turns playing the game. 
+  * Add a second AI player, and take turns playing the game. 
+  * Make it command line driven using this code to get user input:
 
+```
++ (NSString *)getInputWithMessage:(NSString *)message
+{
+
+    char input[50];
+    NSLog(@"%@",message);
+
+    fgets(input, sizeof input, stdin);
+    NSString *result = [[NSString stringWithCString:input encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    system("clear");
+    NSLog(@"");
+    return result;
+}
+```
 
