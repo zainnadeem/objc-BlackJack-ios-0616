@@ -19,7 +19,7 @@ We'll be building a BlackJack game. Take a minute and think about how the game c
    * have a rank (1-13, Jack/Queen/King == 11/12/13)
    * validate suit/rank, meaning they must not allow the previous two rules to be broken. An invalid suit or rank should return `@""` or `@0`, respectively.
   
-   *Note: feel free to use your `PlayingCard` class from the previous lab (OOP-Cards-Model).*
+	   *Note: feel free to use your `PlayingCard` class from the previous lab (OOP-Cards-Model).*
 
 2. Now that we've got cards, create `FISPlayingCardDeck` with the following:
 	
@@ -27,18 +27,18 @@ We'll be building a BlackJack game. Take a minute and think about how the game c
    * a `drawRandomCard` method that "draws" (returns) a random card from your `cards` property. (*hint: google `arc4random_uniform`*) Don't forget to remove your drawn card from the deck!
    * override its `init` so that when a deck is created, its `cards` property is initialized and filled with the appropriate 52 `FISPlayingCard`s.
 
-   **When you're done, run the PlayingCardDeckTests to make sure this works as intended.**
+	   **When you're done, run the PlayingCardDeckTests to make sure this works as intended.**
    
 3. A game's gotta have rules — create the `FISBlackjackGame` class. 
 
 	BlackjackGame should have the following properties and methods: 
 
 	```objc
-@property (strong, nonatomic) FISPlayingCardDeck *playingCardDeck; // the playingCardDeck in use 
-@property (strong, nonatomic) NSNumber *handScore; // returns the total value of cards in the hand. Remember: Aces can be 1 or 11 !!!
-@property (strong, nonatomic) NSMutableArray *hand; //returns the cards in the hand 
-@property (nonatomic) BOOL isBusted; // returns YES if handScore is more than 21
-@property (nonatomic) BOOL isBlackjack; // returns YES if handScore is 21
+	@property (strong, nonatomic) FISPlayingCardDeck *playingCardDeck; // the playingCardDeck in use 
+	@property (strong, nonatomic) NSNumber *handScore; // returns the total value of cards in the hand. Remember: Aces can be 1 or 11 !!!
+	@property (strong, nonatomic) NSMutableArray *hand; //returns the cards in the hand 
+	@property (nonatomic) BOOL isBusted; // returns YES if handScore is more than 21
+	@property (nonatomic) BOOL isBlackjack; // returns YES if handScore is 21
 
 	- (instancetype)init; // should initialize playingCardDeck with a new deck, set handScore and isBusted to default values
 	- (void)deal; // should deal 2 new cards and add those cards to the hand.   
@@ -48,12 +48,12 @@ We'll be building a BlackJack game. Take a minute and think about how the game c
 
 4. From the AppDelegate (in your old friend `didFinishLaunchingWithOptions`):
 
-	- Create a new `FISBlackjackGame`
-	- Deal 
-	- Keep hitting until either busting or getting a blackjack  
-	- NSLog the final hand
-	- **Run it!** Fix any unexpected behavior.
-	- Don't forget to run the tests!
+	* Create a new `FISBlackjackGame`
+	* Deal 
+	* Keep hitting until either busting or getting a blackjack  
+	* NSLog the final hand
+	* **Run it!** Fix any unexpected behavior.
+	* Don't forget to run the tests!
 
 ### Extra Credit
 
