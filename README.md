@@ -7,7 +7,7 @@ BlackJack
 =======
 
 ### Goals 
- - **Put it all together!** Use your**** knowledge of custom classes, properties, and methods to create a playable card game.
+ - **Put it all together!** Use your knowledge of custom classes, properties, and methods to create a playable card game.
 
 ### Instructions 
 
@@ -17,14 +17,14 @@ We'll be building a BlackJack game. Take a minute and think about how the game c
 
    * have a suit (use these: ♥  ♠  ♣  ♦)
    * have a rank (1-13, Jack/Queen/King == 11/12/13)
-   * validate suit/rank, meaning they must not allow the previous two rules to be broken.
+   * validate suit/rank, meaning they must not allow the previous two rules to be broken. An invalid suit or rank should return `@""` or `@0`, respectively.
   
    *Note: feel free to use your `PlayingCard` class from the previous lab (OOP-Cards-Model).*
 
 2. Now that we've got cards, create `FISPlayingCardDeck` with the following:
 	
    * an `NSMutableArray` property named `cards` to store your playing cards.
-   * a `drawRandomCard` method that "draws" (returns) a random card from your `cards` property. (*hint: google `arc4random_uniform`*)
+   * a `drawRandomCard` method that "draws" (returns) a random card from your `cards` property. (*hint: google `arc4random_uniform`*) Don't forget to remove your drawn card from the deck!
    * override its `init` so that when a deck is created, its `cards` property is initialized and filled with the appropriate 52 `FISPlayingCard`s.
 
    **When you're done, run the PlayingCardDeckTests to make sure this works as intended.**
