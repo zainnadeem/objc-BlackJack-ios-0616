@@ -1,5 +1,5 @@
 //
-//  BlackjackGameTests.m
+//  BlackjackGameSpec.m
 //  BlackJack
 //
 //  Created by Al Tyus on 6/11/14.
@@ -34,19 +34,19 @@ describe(@"FISBlackjackGame", ^{
             expect(game.playingCardDeck).toNot.beNil();
             expect([game.playingCardDeck.cards count]).to.equal(52);
             
-            NSPredicate *heartsPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♥️'"];
+            NSPredicate *heartsPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♥'"];
             NSArray *hearts = [game.playingCardDeck.cards filteredArrayUsingPredicate:heartsPredicate];
             expect([hearts count]).to.equal(13);
             
-            NSPredicate *clubsPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♣️'"];
+            NSPredicate *clubsPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♣'"];
             NSArray *clubs = [game.playingCardDeck.cards filteredArrayUsingPredicate:clubsPredicate];
             expect([clubs count]).to.equal(13);
             
-            NSPredicate *spadesPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♠️'"];
+            NSPredicate *spadesPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♠'"];
             NSArray *spades = [game.playingCardDeck.cards filteredArrayUsingPredicate:spadesPredicate];
             expect([spades count]).to.equal(13);
             
-            NSPredicate *diamondsPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♦️'"];
+            NSPredicate *diamondsPredicate = [NSPredicate predicateWithFormat:@"self.suit == '♦'"];
             NSArray *diamonds = [game.playingCardDeck.cards filteredArrayUsingPredicate:diamondsPredicate];
             expect([diamonds count]).to.equal(13);
             
@@ -82,9 +82,9 @@ describe(@"FISBlackjackGame", ^{
         });
         it(@"should not hit if hand is busted", ^{
             
-            FISPlayingCard *kingHearts = [[FISPlayingCard alloc] initWithSuit:@"♥️" rank:@13];
-            FISPlayingCard *kingDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦️" rank:@13];
-            FISPlayingCard *kingClubs = [[FISPlayingCard alloc] initWithSuit:@"♣️" rank:@13];
+            FISPlayingCard *kingHearts = [[FISPlayingCard alloc] initWithSuit:@"♥" rank:@13];
+            FISPlayingCard *kingDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦" rank:@13];
+            FISPlayingCard *kingClubs = [[FISPlayingCard alloc] initWithSuit:@"♣" rank:@13];
             
             NSMutableArray *hand =[NSMutableArray arrayWithArray:@[kingClubs, kingDiamonds, kingHearts]];
             game.hand = hand;
@@ -97,10 +97,10 @@ describe(@"FISBlackjackGame", ^{
     });
     describe(@"isBusted", ^{
         it(@"should return YES if the handScore is greater than 21", ^{
-            FISPlayingCard *kingHearts = [[FISPlayingCard alloc] initWithSuit:@"♥️" rank:@13];
-            FISPlayingCard *kingDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦️" rank:@13];
-            FISPlayingCard *kingClubs = [[FISPlayingCard alloc] initWithSuit:@"♣️" rank:@13];
-            FISPlayingCard *aceClubs = [[FISPlayingCard alloc] initWithSuit:@"♣️" rank:@1];
+            FISPlayingCard *kingHearts = [[FISPlayingCard alloc] initWithSuit:@"♥" rank:@13];
+            FISPlayingCard *kingDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦" rank:@13];
+            FISPlayingCard *kingClubs = [[FISPlayingCard alloc] initWithSuit:@"♣" rank:@13];
+            FISPlayingCard *aceClubs = [[FISPlayingCard alloc] initWithSuit:@"♣" rank:@1];
             
             game.hand = [NSMutableArray arrayWithArray:@[kingClubs, kingDiamonds, kingHearts]];
             
@@ -126,12 +126,12 @@ describe(@"FISBlackjackGame", ^{
         __block FISPlayingCard *kingDiamonds;
         
         beforeEach(^{
-            aceClubs = [[FISPlayingCard alloc] initWithSuit:@"♣️" rank:@1];
-            aceHearts = [[FISPlayingCard alloc] initWithSuit:@"♥️" rank:@1];
-            aceDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦️" rank:@1];
-            aceSpades = [[FISPlayingCard alloc] initWithSuit:@"♠️" rank:@1];
-            kingHearts = [[FISPlayingCard alloc] initWithSuit:@"♥️" rank:@13];
-            kingDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦️" rank:@13];
+            aceClubs = [[FISPlayingCard alloc] initWithSuit:@"♣" rank:@1];
+            aceHearts = [[FISPlayingCard alloc] initWithSuit:@"♥" rank:@1];
+            aceDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦" rank:@1];
+            aceSpades = [[FISPlayingCard alloc] initWithSuit:@"♠" rank:@1];
+            kingHearts = [[FISPlayingCard alloc] initWithSuit:@"♥" rank:@13];
+            kingDiamonds = [[FISPlayingCard alloc] initWithSuit:@"♦" rank:@13];
         });
         it(@"should implement handScore", ^{
             expect(game).to.respondTo(@selector(handScore)); 
