@@ -58,6 +58,11 @@
     }
 }
 
+- (void)setSuit:(NSString *)suit
+{
+    _suit = [FISPlayingCard validateSuit: suit];
+}
+
 + (NSNumber *)validateRank:(NSNumber *)rank
 {
     if( [rank integerValue] < [[FISPlayingCard rankStrings] count])
@@ -105,7 +110,7 @@
 
 + (NSArray *)validSuits
 {
-    return @[@"♠️",@"♥️",@"♣️",@"♦️"];
+    return @[@"♠",@"♥",@"♣",@"♦"];
 }
 
 @end

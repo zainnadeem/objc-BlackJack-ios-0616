@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		31FF2DF119E33010009B93B0 /* FISBlackjackGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF2DE819E33010009B93B0 /* FISBlackjackGame.m */; };
-		31FF2DF219E33010009B93B0 /* FISCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF2DEA19E33010009B93B0 /* FISCard.m */; };
-		31FF2DF319E33010009B93B0 /* FISDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF2DEC19E33010009B93B0 /* FISDeck.m */; };
 		31FF2DF419E33010009B93B0 /* FISPlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF2DEE19E33010009B93B0 /* FISPlayingCard.m */; };
 		31FF2DF519E33010009B93B0 /* FISPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FF2DF019E33010009B93B0 /* FISPlayingCardDeck.m */; };
 		440FE73819464F8000C45D87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 440FE73719464F8000C45D87 /* Foundation.framework */; };
@@ -42,10 +40,6 @@
 /* Begin PBXFileReference section */
 		31FF2DE719E33010009B93B0 /* FISBlackjackGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISBlackjackGame.h; sourceTree = "<group>"; };
 		31FF2DE819E33010009B93B0 /* FISBlackjackGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISBlackjackGame.m; sourceTree = "<group>"; };
-		31FF2DE919E33010009B93B0 /* FISCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCard.h; sourceTree = "<group>"; };
-		31FF2DEA19E33010009B93B0 /* FISCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCard.m; sourceTree = "<group>"; };
-		31FF2DEB19E33010009B93B0 /* FISDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDeck.h; sourceTree = "<group>"; };
-		31FF2DEC19E33010009B93B0 /* FISDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDeck.m; sourceTree = "<group>"; };
 		31FF2DED19E33010009B93B0 /* FISPlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISPlayingCard.h; sourceTree = "<group>"; };
 		31FF2DEE19E33010009B93B0 /* FISPlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISPlayingCard.m; sourceTree = "<group>"; };
 		31FF2DEF19E33010009B93B0 /* FISPlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISPlayingCardDeck.h; sourceTree = "<group>"; };
@@ -137,10 +131,6 @@
 				440FE74719464F8000C45D87 /* FISAppDelegate.m */,
 				31FF2DE719E33010009B93B0 /* FISBlackjackGame.h */,
 				31FF2DE819E33010009B93B0 /* FISBlackjackGame.m */,
-				31FF2DE919E33010009B93B0 /* FISCard.h */,
-				31FF2DEA19E33010009B93B0 /* FISCard.m */,
-				31FF2DEB19E33010009B93B0 /* FISDeck.h */,
-				31FF2DEC19E33010009B93B0 /* FISDeck.m */,
 				31FF2DED19E33010009B93B0 /* FISPlayingCard.h */,
 				31FF2DEE19E33010009B93B0 /* FISPlayingCard.m */,
 				31FF2DEF19E33010009B93B0 /* FISPlayingCardDeck.h */,
@@ -322,12 +312,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31FF2DF219E33010009B93B0 /* FISCard.m in Sources */,
 				31FF2DF419E33010009B93B0 /* FISPlayingCard.m in Sources */,
 				440FE74419464F8000C45D87 /* main.m in Sources */,
 				440FE74819464F8000C45D87 /* FISAppDelegate.m in Sources */,
 				31FF2DF519E33010009B93B0 /* FISPlayingCardDeck.m in Sources */,
-				31FF2DF319E33010009B93B0 /* FISDeck.m in Sources */,
 				31FF2DF119E33010009B93B0 /* FISBlackjackGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

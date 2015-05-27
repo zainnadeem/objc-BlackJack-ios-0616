@@ -21,6 +21,34 @@
     return self;
 }
 
+- (NSMutableArray *)cards
+{
+    if (!_cards)
+    {
+        _cards = [[NSMutableArray alloc] init];
+    }
+    return _cards;
+}
+
+- (FISPlayingCard *)drawRandomCard
+{
+    FISPlayingCard *randomCard = [[FISPlayingCard alloc] init];
+    
+    if (self.cards.count)
+    {
+        int index = arc4random() % self.cards.count;
+        randomCard = self.cards[index];
+        [self.cards removeObjectAtIndex:index];
+    }
+    
+    return randomCard;
+}
+
+- (void)addCard:(FISPlayingCard *)card
+{
+    [self.cards addObject:card];
+}
+
 - (void)setupPlayingCardDeck
 {
     for (NSString *suit in [FISPlayingCard validSuits])

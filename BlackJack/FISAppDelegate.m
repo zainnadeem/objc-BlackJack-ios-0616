@@ -13,10 +13,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     
     //FISPlayingCardDeck *deck = [[FISPlayingCardDeck alloc] init];
     FISBlackjackGame *game = [[FISBlackjackGame alloc] init];
@@ -35,7 +31,6 @@
     {
         NSLog(@"Busted! Score = %@", game.handScore);
     }
-    
     
     return YES;
 }

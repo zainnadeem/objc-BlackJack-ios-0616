@@ -6,12 +6,15 @@
 //  Copyright (c) 2014 Flatiron School. All rights reserved.
 //
 
-#import "FISDeck.h"
+#import "FISPlayingCard.h"
 
-@interface FISPlayingCardDeck : FISDeck
+@interface FISPlayingCardDeck : NSObject
 
 @property (nonatomic, getter = isFaceUp)BOOL faceUp;
+@property (strong, nonatomic) NSMutableArray * cards;
 
+- (FISPlayingCard *)drawRandomCard;
+- (void)addCard:(FISPlayingCard *)card;
 - (instancetype)init; // Playing Card Deck's init method should create an unshuffled deck of all 52 playing cards and initialize the cards mutable array with the 52 cards.
 
 @end
