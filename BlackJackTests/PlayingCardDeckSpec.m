@@ -12,9 +12,9 @@
 #import "FISPlayingCardDeck.h"
 #import "FISPlayingCard.h"
 
-SpecBegin(PlayingCardDeck)
+SpecBegin(FISPlayingCardDeck)
 
-describe(@"PlayingCardDeck", ^{
+describe(@"FISPlayingCardDeck", ^{
     
     __block FISPlayingCardDeck *deck;
     beforeAll(^{
@@ -23,6 +23,14 @@ describe(@"PlayingCardDeck", ^{
     
     beforeEach(^{
         deck = [[FISPlayingCardDeck alloc] init];
+    });
+    
+    describe(@"cards", ^{
+        it(@"should have a cards instance method that returns an NSMutableArray", ^{
+            expect(deck).to.respondTo(@selector(cards));
+            expect(deck.cards).to.beKindOf([NSMutableArray class]);
+        });
+        pending(@"should be an array of cards");
     });
     
     describe(@"init", ^{
@@ -45,10 +53,10 @@ describe(@"PlayingCardDeck", ^{
             {
                 expect([countedCards countForObject:card]).to.equal(1);
                 
-                if ([card.suit isEqualToString:@"♠️"]){spadesCount++;}
-                if ([card.suit isEqualToString:@"♥️"]){heartsCount++;}
-                if ([card.suit isEqualToString:@"♣️"]){clubsCount++;}
-                if ([card.suit isEqualToString:@"♦️"]){diamondsCount++;}
+                if ([card.suit isEqualToString:@"♠"]){spadesCount++;}
+                if ([card.suit isEqualToString:@"♥"]){heartsCount++;}
+                if ([card.suit isEqualToString:@"♣"]){clubsCount++;}
+                if ([card.suit isEqualToString:@"♦"]){diamondsCount++;}
                 
             }
             expect(heartsCount).to.equal(13);
@@ -57,6 +65,26 @@ describe(@"PlayingCardDeck", ^{
             expect(diamondsCount).to.equal(13);
         });
     });
+    
+    describe(@"drawRandomCard", ^{
+        
+        it(@"should return an FISPlayingCard", ^{
+            expect([deck drawRandomCard]).to.beKindOf([FISPlayingCard class]);
+        });
+        
+        it(@"Should draw a random card", ^{
+            pending(@"Testing Randomness is very very hard so these are just some lightweight");
+            expect([deck drawRandomCard]).toNot.equal([deck drawRandomCard]);
+            // expects drawRandomCard not to draw the same card twice in a row
+        });
+        
+        it(@"Should remove the card from Cards after it's drawn", ^{
+            FISPlayingCard *card = [deck drawRandomCard];
+            
+            expect(deck.cards).toNot.contain(card);
+        });
+    });
+    
 });
 
 

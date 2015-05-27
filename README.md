@@ -7,76 +7,52 @@ BlackJack
 =======
 
 ### Goals 
-- Put it all together: Use inheritence to create a playable card game 
-- Work with random numbers 
+ - **Put it all together!** Use your knowledge of custom classes, properties, and methods to create a playable card game.
 
 ### Instructions 
 
-We'll be building a BlackJack game on top of OOP-Cards. If you like, you can start with a copy of your completed OOP-Cards assignment.  
+We'll be building a BlackJack game. Take a minute and think about how the game could be broken down into classes... we're going to need cards, a deck, and a class for the game itself. 
 
-Create a `FISDeck` and a `FISPlayingCardDeck` Class.  FISPlayingCardDeck should inherit from deck.  
+1. Let's start with the most basic element of the game, the card. Make a `FISPlayingCard` class. Your cards should:
 
+   * have a suit (use these: ♥  ♠  ♣  ♦)
+   * have a rank (1-13, Jack/Queen/King == 11/12/13)
+   * validate suit/rank, meaning they must not allow the previous two rules to be broken. An invalid suit or rank should return `@""` or `@0`, respectively.
+  
+     *Note: feel free to use your `PlayingCard` class from the previous lab (OOP-Cards-Model).*
 
-FISDeck should have the following properties and methods: 
+2. Now that we've got cards, create `FISPlayingCardDeck` with the following:
+	
+   * an `NSMutableArray` property named `cards` to store your playing cards.
+   * a `drawRandomCard` method that "draws" (returns) a random card from your `cards` property. (*hint: google `arc4random_uniform`*) Don't forget to remove your drawn card from the deck!
+   * override its `init` so that when a deck is created, its `cards` property is initialized and filled with the appropriate 52 `FISPlayingCard`s.
 
-```objc
+      **When you're done, run the PlayingCardDeckTests to make sure this works as intended.**
+   
+3. A game's gotta have rules — create the `FISBlackjackGame` class. 
 
-@property (strong, nonatomic) NSMutableArray *cards; // the cards in the deck 
-- (FISCard *)drawRandomCard; // should return a random card, and remove that card from the cards array 
+	Your class should have the following properties and methods: 
 
-```
+   ```obj-c
+   @property (strong, nonatomic) FISPlayingCardDeck *playingCardDeck; // the playingCardDeck in use
+   @property (strong, nonatomic) NSNumber *handScore; // returns the total value of cards in the hand. Remember: Aces can be 1 or 11 !!!
+   @property (strong, nonatomic) NSMutableArray *hand; //returns the cards in the hand 
+   @property (nonatomic) BOOL isBusted; // returns YES if handScore is more than 21
+   @property (nonatomic) BOOL isBlackjack; // returns YES if handScore is 21
 
-PlayingCardDeck should have the following properties and methods:
+   - (instancetype)init; // should initialize playingCardDeck with a new deck, set handScore and isBusted to default values
+   - (void)deal; // should deal 2 new cards and add those cards to the hand.   
+   - (void)hit; // should deal one additional card and add it card to the hand.   
+   ```
 
-```objc
+4. From the AppDelegate (in your old friend `didFinishLaunchingWithOptions`):
 
-- (instancetype)init; // Playing Card Deck's init method should create an unshuffled deck of all 52 playing cards and initialize the cards mutable array with the 52 cards. 
-
-```
-
-Create a BlackjackGame class. 
-
-BlackjackGame should have the following properties and methods: 
-
-```objc
-
-- (instancetype)init; // should initialize playingCardDeck with a new deck and set score and isBusted to default values
-- (void)deal; // should deal 2 new cards and add the cards to the hand.   
-- (void)hit; // should deal one additional card, and add the card to the hand.   
-
-@property (strong, nonatomic) FISPlayingCardDeck *playingCardDeck; // returns the playingCardDeck in use 
-@property (strong, nonatomic) NSNumber *handScore; // returns the total value of cards in the hand. Remember: Aces can be 1 or 11. 
-@property (strong, nonatomic) NSMutableArray *hand; //returns the cards in the hand 
-@property (nonatomic) BOOL isBusted; // returns YES if handScore is more than 21
-@property (nonatomic) BOOL isBlackjack; // returns YES if handScore is 21
-
-```
-
-From the App Delegate 
-
-- Create a new BlackJackGame
-- Deal 
-- Keep hitting until either busting or getting a blackjack  
-- NSLog the final hand
+   * Create a new `FISBlackjackGame`
+   * Deal 
+   * Keep hitting until either busting or getting a blackjack  
+   * NSLog the final hand
+   * **Run it!** Fix any unexpected behavior.
+   * Don't forget to run the tests!
 
 ### Extra Credit
-
-  * Add a second AI player, and take turns playing the game. 
-  * Make it command line driven using this code to get user input:
-
-```
-+ (NSString *)getInputWithMessage:(NSString *)message
-{
-
-    char input[50];
-    NSLog(@"%@",message);
-
-    fgets(input, sizeof input, stdin);
-    NSString *result = [[NSString stringWithCString:input encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    system("clear");
-    NSLog(@"");
-    return result;
-}
-```
-
+   * Add a second AI player, and take turns playing the game. This may actually be easier than you'd think :)
