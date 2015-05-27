@@ -12,9 +12,9 @@
 #import "FISPlayingCardDeck.h"
 #import "FISPlayingCard.h"
 
-SpecBegin(PlayingCardDeck)
+SpecBegin(FISPlayingCardDeck)
 
-describe(@"PlayingCardDeck", ^{
+describe(@"FISPlayingCardDeck", ^{
     
     __block FISPlayingCardDeck *deck;
     beforeAll(^{
@@ -73,9 +73,9 @@ describe(@"PlayingCardDeck", ^{
         });
         
         it(@"Should draw a random card", ^{
-            pending(@"Testing Randomness is very very hard so these are just some lightweight tests");
-            
-            expect([deck drawRandomCard]).toNot.equal([deck drawRandomCard]);// expects drawRandomCard not to draw the same card twice in a row
+            pending(@"Testing Randomness is very very hard so these are just some lightweight");
+            expect([deck drawRandomCard]).toNot.equal([deck drawRandomCard]);
+            // expects drawRandomCard not to draw the same card twice in a row
         });
         
         it(@"Should remove the card from Cards after it's drawn", ^{

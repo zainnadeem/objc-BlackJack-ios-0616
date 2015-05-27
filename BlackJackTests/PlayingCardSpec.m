@@ -7,7 +7,7 @@
 //
 
 #import "Specta.h"
-#import "PlayingCard.h"
+#import "FISPlayingCard.h"
 #define EXP_SHORTHAND
 #import "Expecta.h"
 #import "KIF.h"
@@ -15,10 +15,10 @@
 
 SpecBegin(PlayingCard)
 
-describe(@"PlayingCard", ^{
-    __block PlayingCard *myCard;
+describe(@"FISPlayingCard", ^{
+    __block FISPlayingCard *myCard;
     beforeEach(^{
-        myCard = [[PlayingCard alloc] initWithSuit:@"♠" rank:@5];
+        myCard = [[FISPlayingCard alloc] initWithSuit:@"♠" rank:@5];
     });
     
     it(@"exists", ^{
@@ -36,7 +36,7 @@ describe(@"PlayingCard", ^{
     });
     
     describe(@"init", ^{
-        __block PlayingCard *defaultCard = [[PlayingCard alloc] init];
+        __block FISPlayingCard *defaultCard = [[FISPlayingCard alloc] init];
         it(@"should set suit to an empty string by default",^{
             expect(defaultCard.suit).to.equal(@"");
         });
@@ -62,8 +62,8 @@ describe(@"PlayingCard", ^{
     
     describe(@"valid rank with designated initializer", ^{
         
-        PlayingCard *myValidPlayingCard = [[PlayingCard alloc] initWithSuit:@"♥" rank:@13];
-        PlayingCard *myInvalidPlayingCard = [[PlayingCard alloc] initWithSuit:@"♥" rank:@14];
+        FISPlayingCard *myValidPlayingCard = [[FISPlayingCard alloc] initWithSuit:@"♥" rank:@13];
+        FISPlayingCard *myInvalidPlayingCard = [[FISPlayingCard alloc] initWithSuit:@"♥" rank:@14];
 
         it(@"valid ranks should return the value as an NSNumber",^{
             expect(myValidPlayingCard.rank).to.equal(@13);
@@ -75,12 +75,12 @@ describe(@"PlayingCard", ^{
     });
     
     describe(@"valid rank with setter", ^{
-        __block PlayingCard *myValidPlayingCard;
-        __block PlayingCard *myInvalidPlayingCard;
+        __block FISPlayingCard *myValidPlayingCard;
+        __block FISPlayingCard *myInvalidPlayingCard;
         
         beforeAll(^{
-            myValidPlayingCard = [[PlayingCard alloc] init];
-            myInvalidPlayingCard = [[PlayingCard alloc] init];
+            myValidPlayingCard = [[FISPlayingCard alloc] init];
+            myInvalidPlayingCard = [[FISPlayingCard alloc] init];
             myValidPlayingCard.rank = @13;
             myInvalidPlayingCard.rank = @14;
         });
@@ -95,12 +95,12 @@ describe(@"PlayingCard", ^{
     });
     
     describe(@"valid suit with with designated initializer", ^{
-        __block PlayingCard *myValidPlayingCard;
-        __block PlayingCard *myInvalidPlayingCard;
+        __block FISPlayingCard *myValidPlayingCard;
+        __block FISPlayingCard *myInvalidPlayingCard;
         
         beforeAll(^{
-            myValidPlayingCard = [[PlayingCard alloc] initWithSuit:@"♥" rank:@13];
-            myInvalidPlayingCard = [[PlayingCard alloc] initWithSuit:@"X" rank:@14];
+            myValidPlayingCard = [[FISPlayingCard alloc] initWithSuit:@"♥" rank:@13];
+            myInvalidPlayingCard = [[FISPlayingCard alloc] initWithSuit:@"X" rank:@14];
         });
         
         it(@"valid suits should return suit",^{
@@ -112,12 +112,12 @@ describe(@"PlayingCard", ^{
     });
     
     describe(@"valid suit with setter", ^{
-        __block PlayingCard *myValidPlayingCard;
-        __block PlayingCard *myInvalidPlayingCard;
+        __block FISPlayingCard *myValidPlayingCard;
+        __block FISPlayingCard *myInvalidPlayingCard;
         
         beforeAll(^{
-            myValidPlayingCard = [[PlayingCard alloc] init];
-            myInvalidPlayingCard = [[PlayingCard alloc] init];
+            myValidPlayingCard = [[FISPlayingCard alloc] init];
+            myInvalidPlayingCard = [[FISPlayingCard alloc] init];
         });
         
         it(@"valid suits should return a valid suit",^{
