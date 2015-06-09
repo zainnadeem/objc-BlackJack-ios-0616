@@ -33,7 +33,7 @@ We'll be building a BlackJack game. Take a minute and think about how the game c
 
 	Your class should have the following properties and methods: 
 
-   ```obj-c
+   ```objc
    @property (strong, nonatomic) FISPlayingCardDeck *playingCardDeck; // the playingCardDeck in use
    @property (strong, nonatomic) NSNumber *handScore; // returns the total value of cards in the hand. Remember: Aces can be 1 or 11 !!!
    @property (strong, nonatomic) NSMutableArray *hand; //returns the cards in the hand 
