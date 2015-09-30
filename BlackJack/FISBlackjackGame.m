@@ -9,7 +9,7 @@
     self = [super init];
     if (self) {
         _playingCardDeck = [[FISPlayingCardDeck alloc] init];
-        _hand = [[NSMutableArray alloc] init];
+//        _hand = [[NSMutableArray alloc] init];
         _handScore = 0;
     }
     

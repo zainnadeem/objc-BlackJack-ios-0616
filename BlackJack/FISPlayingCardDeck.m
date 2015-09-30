@@ -11,6 +11,7 @@
     if (self)
     {
         _remainingCards = [[NSMutableArray alloc] init];
+        _dealtCards = [[NSMutableArray alloc] init];
         [self generateCards];
     }
     return self;
@@ -32,31 +33,57 @@
 - (FISPlayingCard *)drawFirstCard {
     
     if (self.remainingCards.count == 0) {
-        NSLog(@"The deck is empty.");
+        NSLog(@"You cannot draw from an empty deck.");
         return nil;
     }
     
-    FISPlayingCard *firstCard = self.remainingCards[0];
+    FISPlayingCard *drawnCard = self.remainingCards[0];
+    [self.dealtCards addObject:drawnCard];
     [self.remainingCards removeObjectAtIndex:0];
     
-    return firstCard;
+    return drawnCard;
+}
+
+- (void)resetDeck {
+    NSLog(@"reset deck");
+    [self gatherDealtCards];
+    [self shuffleRemainingCards];
+}
+
+- (void)gatherDealtCards {
+    NSLog(@"gather dealt cards");
+    [self.remainingCards addObjectsFromArray:self.dealtCards];
+    [self.dealtCards removeAllObjects];
 }
 
 - (void)shuffleRemainingCards {
+    NSLog(@"shuffle remaining cards");
+    NSMutableArray *cardsCopy = [self.remainingCards mutableCopy];
+    [self.remainingCards removeAllObjects];
     
+    NSUInteger total = cardsCopy.count;
+    
+    for (NSUInteger i = 0; i < total; i++) {
+        NSUInteger cardsCount = cardsCopy.count;
+        NSUInteger randomIndex = arc4random_uniform((unsigned int)cardsCount);
+        
+        FISPlayingCard *randomCard = cardsCopy[randomIndex];
+        [self.remainingCards addObject:randomCard];
+    }
 }
 
-
-- (void)addCard:(FISPlayingCard *)card
-{
- //   [self.cards addObject:card];
+- (NSString *)description {
+    NSMutableString *result = [[NSMutableString alloc] init];
+    
+    [result appendFormat:@"\ncount: %lu", self.remainingCards.count];
+    
+    [result appendString:@"\ncards:"];
+    for (FISPlayingCard *card in self.remainingCards) {
+        [result appendFormat:@"\n    %@", card.description];
+    }
+    
+    return [result copy];
 }
-//
-//if (self.cards.count)
-//{
-//    int index = arc4random() % self.cards.count;
-//    randomCard = self.cards[index];
-//    [self.cards removeObjectAtIndex:index];
-//}
+
 
 @end

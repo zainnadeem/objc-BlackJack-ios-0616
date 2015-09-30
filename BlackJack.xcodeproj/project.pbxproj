@@ -131,10 +131,10 @@
 				440FE74719464F8000C45D87 /* FISAppDelegate.m */,
 				31FF2DE719E33010009B93B0 /* FISBlackjackGame.h */,
 				31FF2DE819E33010009B93B0 /* FISBlackjackGame.m */,
-				31FF2DED19E33010009B93B0 /* FISPlayingCard.h */,
-				31FF2DEE19E33010009B93B0 /* FISPlayingCard.m */,
 				31FF2DEF19E33010009B93B0 /* FISPlayingCardDeck.h */,
 				31FF2DF019E33010009B93B0 /* FISPlayingCardDeck.m */,
+				31FF2DED19E33010009B93B0 /* FISPlayingCard.h */,
+				31FF2DEE19E33010009B93B0 /* FISPlayingCard.m */,
 				440FE73E19464F8000C45D87 /* Supporting Files */,
 			);
 			path = BlackJack;

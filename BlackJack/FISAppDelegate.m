@@ -15,9 +15,36 @@
     NSLog(@"default card: %@", defaultCard.cardLabel);
     
     FISPlayingCardDeck *deck = [[FISPlayingCardDeck alloc] init];
-    FISPlayingCard *draw = [deck drawFirstCard];
     
-    NSLog(@"draw: %@", draw.cardLabel);
+    NSLog(@"deck: %@", deck);
+    
+    [deck shuffleRemainingCards];
+    
+    NSLog(@"deck: %@", deck);
+    
+    FISPlayingCard *card = [deck drawFirstCard];
+    NSLog(@"card: %@", card);
+    NSLog(@"deck: %@", deck);
+    
+    card = [deck drawFirstCard];
+    NSLog(@"card: %@", card);
+    NSLog(@"deck: %@", deck);
+
+    card = [deck drawFirstCard];
+    NSLog(@"card: %@", card);
+    NSLog(@"deck: %@", deck);
+
+    card = [deck drawFirstCard];
+    NSLog(@"card: %@", card);
+    NSLog(@"deck: %@", deck);
+
+    [deck resetDeck];
+    
+    NSLog(@"deck: %@", deck);
+
+    card = [deck drawFirstCard];
+    NSLog(@"card: %@", card);
+    NSLog(@"deck: %@", deck);
     
     return YES;
 }

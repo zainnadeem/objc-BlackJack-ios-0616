@@ -5,13 +5,7 @@
 @implementation FISPlayingCard
 
 - (instancetype)init {
-    
-    self = [super init];
-    
-    if (self)
-    {
-        self = [self initWithSuit:@"!" rank:@"N"];
-    }
+    self = [self initWithSuit:@"!" rank:@"N"];
     return self;
 }
 
@@ -32,6 +26,10 @@
 - (NSString *)cardLabelForSuitAndRank {
     NSString *cardLabel = [NSString stringWithFormat:@"%@ %@", self.suit, self.rank];
     return cardLabel;
+}
+
+- (NSString *)description {
+    return self.cardLabel;
 }
 
 - (NSInteger)cardValueForRank {

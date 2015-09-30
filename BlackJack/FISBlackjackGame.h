@@ -6,7 +6,8 @@
 @interface FISBlackjackGame : NSObject
 
 @property (strong, nonatomic) FISPlayingCardDeck *playingCardDeck;
-@property (strong, nonatomic) NSMutableArray *hand;
+@property (strong, nonatomic) NSMutableArray *playerCards;
+@property (strong, nonatomic) NSMutableArray *houseCards;
 @property (nonatomic) NSInteger handScore;
 
 - (instancetype)init;
