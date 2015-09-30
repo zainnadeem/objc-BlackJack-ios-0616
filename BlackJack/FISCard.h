@@ -8,11 +8,11 @@
 @property (strong, nonatomic) NSString *cardLabel;
 @property (nonatomic) NSUInteger cardValue;
 
++ (NSArray *)validSuits;
++ (NSArray *)validRanks;
+
 - (instancetype)init;
 - (instancetype)initWithSuit:(NSString *)suit
                         rank:(NSString *)rank;
-
-+ (NSArray *)validSuits;
-+ (NSArray *)validRanks;
 
 @end

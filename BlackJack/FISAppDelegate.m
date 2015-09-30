@@ -15,17 +15,17 @@
     NSLog(@"%@", game.player);
     NSLog(@"%@", game.house);
     
-    [game newGame];
+    [game playBlackjack];
     
     NSLog(@"%@", game.player);
     NSLog(@"%@", game.house);
 
-    [game newGame];
+    [game playBlackjack];
     
     NSLog(@"%@", game.player);
     NSLog(@"%@", game.house);
 
-    [game newGame];
+    [game playBlackjack];
     
     NSLog(@"%@", game.player);
     NSLog(@"%@", game.house);

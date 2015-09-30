@@ -4,6 +4,14 @@
 
 @implementation FISCard
 
++ (NSArray *)validSuits {
+    return @[@"♠",@"♥",@"♣",@"♦"];
+}
+
++ (NSArray *)validRanks {
+    return @[ @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"J", @"Q", @"K"];
+}
+
 - (instancetype)init {
     self = [self initWithSuit:@"!" rank:@"N"];
     return self;
@@ -28,25 +36,23 @@
     return cardLabel;
 }
 
-- (NSString *)description {
-    return self.cardLabel;
-}
-
 - (NSInteger)cardValueForRank {
     NSArray *validRanks = [FISCard validRanks];
     
     NSUInteger index = [validRanks indexOfObject:self.rank];
-    NSUInteger cardValue = index + 1;
+    NSUInteger cardValue = 0;
+    
+    if (index <= 9) {
+        cardValue = index + 1;
+    } else {
+        cardValue = 10;
+    }
     
     return cardValue;
 }
 
-+ (NSArray *)validSuits {
-    return @[@"♠",@"♥",@"♣",@"♦"];
-}
-
-+ (NSArray *)validRanks {
-    return @[ @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"J", @"Q", @"K"];
+- (NSString *)description {
+    return self.cardLabel;
 }
 
 @end

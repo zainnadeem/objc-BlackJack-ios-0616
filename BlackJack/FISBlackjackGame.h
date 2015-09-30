@@ -12,10 +12,20 @@
 
 - (instancetype)init;
 
-- (void)newGame;
+- (void)playBlackjack;
 
-- (void)deal;
+- (void)newDeal;
 
-- (void)nextRound;
+- (void)dealCardToPlayer;
+
+- (void)dealCardToHouse;
+
+- (void)playerTurn;
+
+- (void)houseTurn;
+
+- (BOOL)houseWins;
+
+- (void)incrementWinsAndLossesForHouseWins:(BOOL)houseWins;
 
 @end

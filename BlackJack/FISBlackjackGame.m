@@ -16,7 +16,7 @@
     return self;
 }
 
-- (void)newGame {
+- (void)playBlackjack {
     [self.deck resetDeck];
     [self.house newGame];
     [self.player newGame];
@@ -36,15 +36,7 @@
     }
     
     BOOL houseWins = [self houseWins];
-    if (houseWins) {
-        self.house.wins++;
-        self.player.losses++;
-        NSLog(@"House wins!");
-    } else {
-        self.house.losses++;
-        self.player.wins++;
-        NSLog(@"Player wins!");
-    }
+    [self incrementWinsAndLossesForHouseWins:houseWins];
 }
 
 - (void)newDeal {
@@ -109,6 +101,18 @@
     }
     
     return YES;
+}
+
+- (void)incrementWinsAndLossesForHouseWins:(BOOL)houseWins {
+    if (houseWins) {
+        self.house.wins++;
+        self.player.losses++;
+        NSLog(@"House wins!");
+    } else {
+        self.house.losses++;
+        self.player.wins++;
+        NSLog(@"Player wins!");
+    }
 }
 
 @end
