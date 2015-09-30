@@ -1,78 +1,114 @@
 //  FISBlackjackGame.m
 
 #import "FISBlackjackGame.h"
-#import "FISPlayingCard.h"
+#import "FISCard.h"
 
 @implementation FISBlackjackGame
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _playingCardDeck = [[FISPlayingCardDeck alloc] init];
-//        _hand = [[NSMutableArray alloc] init];
-        _handScore = 0;
+        _deck = [[FISCardDeck alloc] init];
+        _house = [[FISBlackjackPlayer alloc] initWithName:@"House"];
+        _player = [[FISBlackjackPlayer alloc] initWithName:@"Player"];
     }
     
     return self;
 }
 
-- (void)deal {
-//    self.playingCardDeck = [[FISPlayingCardDeck alloc] init];
-//    self.hand = [[NSMutableArray alloc] init];
-//    self.handScore = 0;
-//    
-//    for (NSInteger x = 0; x < 2; x++)
-//    {
-//        [self.hand addObject:[self.playingCardDeck drawRandomCard]];
-//    }
+- (void)newGame {
+    [self.deck resetDeck];
+    [self.house newGame];
+    [self.player newGame];
+    
+    [self newDeal];
+    
+    for (NSUInteger i = 0; i < 3; i++) {
+        [self playerTurn];
+        if (self.player.busted) {
+            break;
+        }
+        
+        [self houseTurn];
+        if (self.house.busted) {
+            break;
+        }
+    }
+    
+    BOOL houseWins = [self houseWins];
+    if (houseWins) {
+        self.house.wins++;
+        self.player.losses++;
+        NSLog(@"House wins!");
+    } else {
+        self.house.losses++;
+        self.player.wins++;
+        NSLog(@"Player wins!");
+    }
 }
 
-- (void)hit {
-//    if ([self.hand count] && !self.isBusted && !self.isBlackjack)
-//    {
-//        [self.hand addObject:[self.playingCardDeck drawRandomCard]];
-//    }
+- (void)newDeal {
+    for (NSUInteger i = 0; i < 2; i++) {
+        [self dealCardToPlayer];
+        [self dealCardToHouse];
+    }
 }
 
-- (BOOL)checkIfBusted {
-//    if (self.handScore > 21) {
-//        
-//    }
-    return NO;
+- (void)dealCardToPlayer {
+    FISCard *card = [self.deck drawNextCard];
+    [self.player acceptCard:card];
 }
 
-- (BOOL)isBlackjack
-{
-//    return [self.handScore integerValue] == 21;
-    return NO;
+- (void)dealCardToHouse {
+    FISCard *card = [self.deck drawNextCard];
+    [self.house acceptCard:card];
 }
 
-- (NSInteger)handScore
-{
-//    NSInteger score = 0;
-//    for (FISPlayingCard *card in self.hand)
-//    {
-//        score += [card.score integerValue];
-//    }
-//    
-//    for (NSInteger x = 0; x < [self numberOfAces]; x++)
-//    {
-//        if (score + 10 <= 21)
-//        {
-//            score += 10;
-//        }
-//    }
-//    
-//    return @(score);
-    return 0;
+- (void)playerTurn {
+    BOOL playerMayHit = !self.player.busted && !self.player.stayed;
+    
+    BOOL playerWillHit = NO;
+    if (playerMayHit) {
+        playerWillHit = [self.player decideToHit];
+    }
+    
+    if (playerWillHit) {
+        [self dealCardToPlayer];
+    }
 }
 
-- (NSInteger)numberOfAces
-{
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.rank == 1"];
-//    
-//    return (NSInteger)[[self.hand filteredArrayUsingPredicate:predicate] count];
-    return 0;
+- (void)houseTurn {
+    BOOL houseMayHit = !self.house.busted && !self.house.stayed;
+    
+    BOOL houseWillHit = NO;
+    if (houseMayHit) {
+        houseWillHit = [self.house decideToHit];
+    }
+    
+    if (houseWillHit) {
+        [self dealCardToHouse];
+    }
+
+}
+
+- (BOOL)houseWins {
+    if (self.house.blackjack && self.player.blackjack) {
+        return NO; // this is actually a 'push'
+    }
+    
+    if (self.house.busted) {
+        return NO;
+    }
+    
+    if (self.player.busted) {
+        return YES;
+    }
+    
+    if (self.player.handscore > self.house.handscore) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

@@ -1,8 +1,8 @@
-//  FISPlayingCard.m
+//  FISCard.m
 
-#import "FISPlayingCard.h"
+#import "FISCard.h"
 
-@implementation FISPlayingCard
+@implementation FISCard
 
 - (instancetype)init {
     self = [self initWithSuit:@"!" rank:@"N"];
@@ -24,7 +24,7 @@
 }
 
 - (NSString *)cardLabelForSuitAndRank {
-    NSString *cardLabel = [NSString stringWithFormat:@"%@ %@", self.suit, self.rank];
+    NSString *cardLabel = [NSString stringWithFormat:@"%@%@", self.suit, self.rank];
     return cardLabel;
 }
 
@@ -33,7 +33,7 @@
 }
 
 - (NSInteger)cardValueForRank {
-    NSArray *validRanks = [FISPlayingCard validRanks];
+    NSArray *validRanks = [FISCard validRanks];
     
     NSUInteger index = [validRanks indexOfObject:self.rank];
     NSUInteger cardValue = index + 1;

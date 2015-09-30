@@ -2,49 +2,35 @@
 
 #import "FISAppDelegate.h"
 #import "FISBlackjackGame.h"
-#import "FISPlayingCard.h"
-#import "FISPlayingCardDeck.h"
+#import "FISCard.h"
+#import "FISCardDeck.h"
 
 @implementation FISAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    FISPlayingCard *defaultCard = [[FISPlayingCard alloc] init];
+    FISBlackjackGame *game = [[FISBlackjackGame alloc] init];
     
-    NSLog(@"default card: %@", defaultCard.cardLabel);
+    NSLog(@"%@", game.player);
+    NSLog(@"%@", game.house);
     
-    FISPlayingCardDeck *deck = [[FISPlayingCardDeck alloc] init];
+    [game newGame];
     
-    NSLog(@"deck: %@", deck);
-    
-    [deck shuffleRemainingCards];
-    
-    NSLog(@"deck: %@", deck);
-    
-    FISPlayingCard *card = [deck drawFirstCard];
-    NSLog(@"card: %@", card);
-    NSLog(@"deck: %@", deck);
-    
-    card = [deck drawFirstCard];
-    NSLog(@"card: %@", card);
-    NSLog(@"deck: %@", deck);
+    NSLog(@"%@", game.player);
+    NSLog(@"%@", game.house);
 
-    card = [deck drawFirstCard];
-    NSLog(@"card: %@", card);
-    NSLog(@"deck: %@", deck);
-
-    card = [deck drawFirstCard];
-    NSLog(@"card: %@", card);
-    NSLog(@"deck: %@", deck);
-
-    [deck resetDeck];
+    [game newGame];
     
-    NSLog(@"deck: %@", deck);
+    NSLog(@"%@", game.player);
+    NSLog(@"%@", game.house);
 
-    card = [deck drawFirstCard];
-    NSLog(@"card: %@", card);
-    NSLog(@"deck: %@", deck);
+    [game newGame];
+    
+    NSLog(@"%@", game.player);
+    NSLog(@"%@", game.house);
+
+    
     
     return YES;
 }

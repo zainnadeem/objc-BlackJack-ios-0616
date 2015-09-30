@@ -1,9 +1,9 @@
-//  FISPlayingCardDeck.m
+//  FISCardDeck.m
 
-#import "FISPlayingCardDeck.h"
-#import "FISPlayingCard.h"
+#import "FISCardDeck.h"
+#import "FISCard.h"
 
-@implementation FISPlayingCardDeck
+@implementation FISCardDeck
 
 - (instancetype)init
 {
@@ -18,26 +18,26 @@
 }
 
 - (void)generateCards {
-    NSArray *validSuits = [FISPlayingCard validSuits];
-    NSArray *validRanks = [FISPlayingCard validRanks];
+    NSArray *validSuits = [FISCard validSuits];
+    NSArray *validRanks = [FISCard validRanks];
     
     for (NSString *suit in validSuits) {
         for (NSString *rank in validRanks) {
-            FISPlayingCard *newCard = [[FISPlayingCard alloc] initWithSuit:suit rank:rank];
-            [self.remainingCards addObject:newCard];
+            FISCard *card = [[FISCard alloc] initWithSuit:suit rank:rank];
+            [self.remainingCards addObject:card];
         }
     }
     NSLog(@"Generated new cards, count: %lu", self.remainingCards.count);
 }
 
-- (FISPlayingCard *)drawFirstCard {
+- (FISCard *)drawNextCard {
     
     if (self.remainingCards.count == 0) {
         NSLog(@"You cannot draw from an empty deck.");
         return nil;
     }
     
-    FISPlayingCard *drawnCard = self.remainingCards[0];
+    FISCard *drawnCard = self.remainingCards[0];
     [self.dealtCards addObject:drawnCard];
     [self.remainingCards removeObjectAtIndex:0];
     
@@ -45,19 +45,16 @@
 }
 
 - (void)resetDeck {
-    NSLog(@"reset deck");
     [self gatherDealtCards];
     [self shuffleRemainingCards];
 }
 
 - (void)gatherDealtCards {
-    NSLog(@"gather dealt cards");
     [self.remainingCards addObjectsFromArray:self.dealtCards];
     [self.dealtCards removeAllObjects];
 }
 
 - (void)shuffleRemainingCards {
-    NSLog(@"shuffle remaining cards");
     NSMutableArray *cardsCopy = [self.remainingCards mutableCopy];
     [self.remainingCards removeAllObjects];
     
@@ -67,7 +64,8 @@
         NSUInteger cardsCount = cardsCopy.count;
         NSUInteger randomIndex = arc4random_uniform((unsigned int)cardsCount);
         
-        FISPlayingCard *randomCard = cardsCopy[randomIndex];
+        FISCard *randomCard = cardsCopy[randomIndex];
+        [cardsCopy removeObjectAtIndex:randomIndex];
         [self.remainingCards addObject:randomCard];
     }
 }
@@ -78,7 +76,7 @@
     [result appendFormat:@"\ncount: %lu", self.remainingCards.count];
     
     [result appendString:@"\ncards:"];
-    for (FISPlayingCard *card in self.remainingCards) {
+    for (FISCard *card in self.remainingCards) {
         [result appendFormat:@"\n    %@", card.description];
     }
     

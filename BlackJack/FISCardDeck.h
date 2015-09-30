@@ -1,15 +1,15 @@
-//  FISPlayingCardDeck.h
+//  FISCardDeck.h
 
-#import "FISPlayingCard.h"
+#import "FISCard.h"
 
-@interface FISPlayingCardDeck : NSObject
+@interface FISCardDeck : NSObject
 
 @property (strong, nonatomic) NSMutableArray *remainingCards;
 @property (strong, nonatomic) NSMutableArray *dealtCards;
 
 - (instancetype)init;
 
-- (FISPlayingCard *)drawFirstCard;
+- (FISCard *)drawNextCard;
 
 - (void)resetDeck;
 
