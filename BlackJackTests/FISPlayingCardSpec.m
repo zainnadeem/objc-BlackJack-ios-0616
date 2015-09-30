@@ -1,17 +1,11 @@
-//
-//  PlayingCardSpec.m
-//  OOP-Cards-Model
-//
-//  Created by Chris Gonzales on 6/10/14.
-//  Copyright 2014 Al Tyus. All rights reserved.
-//
+//  FISPlayingCardSpec.m
 
 #import "Specta.h"
 #import "FISPlayingCard.h"
 #define EXP_SHORTHAND
 #import "Expecta.h"
 
-SpecBegin(PlayingCard)
+SpecBegin(FISPlayingCard)
 
 describe(@"FISPlayingCard", ^{
     __block FISPlayingCard *myCard;

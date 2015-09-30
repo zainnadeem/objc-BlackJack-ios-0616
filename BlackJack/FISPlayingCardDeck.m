@@ -1,10 +1,4 @@
-//
 //  FISPlayingCardDeck.m
-//  BlackJack
-//
-//  Created by Al Tyus on 6/11/14.
-//  Copyright (c) 2014 Flatiron School. All rights reserved.
-//
 
 #import "FISPlayingCardDeck.h"
 #import "FISPlayingCard.h"

@@ -1,19 +1,9 @@
-//
 //  FISBlackjackGame.m
-//  BlackJack
-//
-//  Created by Al Tyus on 6/11/14.
-//  Copyright (c) 2014 Flatiron School. All rights reserved.
-//
 
 #import "FISBlackjackGame.h"
 #import "FISPlayingCard.h"
 
 @implementation FISBlackjackGame
-
-#import "FISBlackjackGame.h"
-#import "FISPlayingCard.h"
-
 
 - (instancetype)init
 {
@@ -27,6 +17,7 @@
     
     return self;
 }
+
 - (void)deal
 {
     self.playingCardDeck = [[FISPlayingCardDeck alloc] init];
@@ -38,6 +29,7 @@
         [self.hand addObject:[self.playingCardDeck drawRandomCard]];
     }
 }
+
 - (void)hit
 {
     if ([self.hand count] && !self.isBusted && !self.isBlackjack)

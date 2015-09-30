@@ -1,10 +1,4 @@
-//
-//  BlackjackGameSpec.m
-//  BlackJack
-//
-//  Created by Al Tyus on 6/11/14.
-//  Copyright (c) 2014 Flatiron School. All rights reserved.
-//
+//  FISBlackjackGameSpec.m
 
 #import "Specta.h"
 #define EXP_SHORTHAND

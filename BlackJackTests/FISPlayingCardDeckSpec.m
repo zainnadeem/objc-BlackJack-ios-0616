@@ -1,10 +1,4 @@
-//
-//  PlayingCardDeck.m
-//  BlackJack
-//
-//  Created by Al Tyus on 6/9/14.
-//  Copyright (c) 2014 Flatiron School. All rights reserved.
-//
+//  FISPlayingCardDeck.m
 
 #import "Specta.h"
 #define EXP_SHORTHAND
