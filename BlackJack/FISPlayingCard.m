@@ -4,107 +4,51 @@
 
 @implementation FISPlayingCard
 
-- (NSString *)description
-{
-    NSString * rankString= [self rankString];
+- (instancetype)init {
     
-    return [NSString stringWithFormat:@"%@ %@", rankString, self.suit];
-}
-
-- (NSNumber *)score
-{
-    NSString *rankString = [self rankString];
-    return [[self class] scoreDictionary][rankString];
-}
-
-- (NSString *)rankString
-{
-    return [[self class] rankStrings][[self.rank integerValue]];
-}
-
-- (id)init
-{
     self = [super init];
+    
     if (self)
     {
-        self = [self initWithSuit:@"" rank:@0];
+        self = [self initWithSuit:@"!" rank:@"N"];
     }
     return self;
 }
 
-- (instancetype)initWithSuit:(NSString *)suit
-                        rank:(NSNumber *)rank
-{
+- (instancetype)initWithSuit:(NSString *)suit rank:(NSString *)rank {
+    
     self = [super init];
+    
     if (self)
     {
-        _suit = [FISPlayingCard validateSuit:suit];
-        _rank = [FISPlayingCard validateRank:rank];
-    }
-    return self;
-}
-
-- (void)setRank:(NSNumber *)rank
-{
-    if ([rank integerValue] <= [[FISPlayingCard maxRank] integerValue])
-    {
+        _suit = suit;
         _rank = rank;
+        _cardLabel = [self cardLabelForSuitAndRank];
+        _cardValue = [self cardValueForRank];
     }
+    return self;
 }
 
-- (void)setSuit:(NSString *)suit
-{
-    _suit = [FISPlayingCard validateSuit: suit];
+- (NSString *)cardLabelForSuitAndRank {
+    NSString *cardLabel = [NSString stringWithFormat:@"%@ %@", self.suit, self.rank];
+    return cardLabel;
 }
 
-+ (NSNumber *)validateRank:(NSNumber *)rank
-{
-    if( [rank integerValue] < [[FISPlayingCard rankStrings] count])
-    {
-        return rank;
-    }
-    else return @0;
+- (NSInteger)cardValueForRank {
+    NSArray *validRanks = [FISPlayingCard validRanks];
+    
+    NSUInteger index = [validRanks indexOfObject:self.rank];
+    NSUInteger cardValue = index + 1;
+    
+    return cardValue;
 }
 
-+ (NSString *)validateSuit:(NSString *)suit
-{
-    if ([[FISPlayingCard validSuits] containsObject: suit])
-    {
-        return suit;
-    }
-    else return @"";
-}
-
-+ (NSArray *)rankStrings
-{
-    return @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
-}
-+ (NSDictionary *)scoreDictionary
-{
-    return @{[[self class] rankStrings][0]: @0,
-             [[self class] rankStrings][1]: @1,
-             [[self class] rankStrings][2]: @2,
-             [[self class] rankStrings][3]: @3,
-             [[self class] rankStrings][4]: @4,
-             [[self class] rankStrings][5]: @5,
-             [[self class] rankStrings][6]: @6,
-             [[self class] rankStrings][7]: @7,
-             [[self class] rankStrings][8]: @8,
-             [[self class] rankStrings][9]: @9,
-             [[self class] rankStrings][10]: @10,
-             [[self class] rankStrings][11]: @10,
-             [[self class] rankStrings][12]: @10,
-             [[self class] rankStrings][13]: @10};
-}
-
-+ (NSNumber *)maxRank
-{
-    return @([self rankStrings].count -1);
-}
-
-+ (NSArray *)validSuits
-{
++ (NSArray *)validSuits {
     return @[@"♠",@"♥",@"♣",@"♦"];
+}
+
++ (NSArray *)validRanks {
+    return @[ @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"J", @"Q", @"K"];
 }
 
 @end

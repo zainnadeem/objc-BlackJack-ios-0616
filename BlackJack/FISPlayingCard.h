@@ -3,14 +3,16 @@
 @interface FISPlayingCard : NSObject
 
 @property (strong, nonatomic) NSString *suit;
-@property (strong, nonatomic) NSNumber *rank;
-@property (strong, nonatomic) NSNumber *score; 
+@property (strong, nonatomic) NSString *rank;
 
+@property (strong, nonatomic) NSString *cardLabel;
+@property (nonatomic) NSInteger cardValue;
+
+- (instancetype)init;
 - (instancetype)initWithSuit:(NSString *)suit
-                        rank:(NSNumber *)rank;
+                        rank:(NSString *)rank;
 
-+ (NSArray *)rankStrings;
 + (NSArray *)validSuits;
-+ (NSNumber *)maxRank;
++ (NSArray *)validRanks;
 
 @end

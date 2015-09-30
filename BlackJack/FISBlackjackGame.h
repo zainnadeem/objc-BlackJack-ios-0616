@@ -6,13 +6,17 @@
 @interface FISBlackjackGame : NSObject
 
 @property (strong, nonatomic) FISPlayingCardDeck *playingCardDeck;
-@property (strong, nonatomic) NSNumber *handScore;
 @property (strong, nonatomic) NSMutableArray *hand;
-@property (nonatomic) BOOL isBusted;
-@property (nonatomic) BOOL isBlackjack;
+@property (nonatomic) NSInteger handScore;
 
-- (id)init;
+- (instancetype)init;
+
 - (void)deal;
+
 - (void)hit;
+
+//- (void)checkIfBusted;
+//
+//- (void)checkIfBlackjack;
 
 @end

@@ -4,11 +4,12 @@
 
 @interface FISPlayingCardDeck : NSObject
 
-@property (nonatomic, getter = isFaceUp)BOOL faceUp;
-@property (strong, nonatomic) NSMutableArray * cards;
+@property (strong, nonatomic) NSMutableArray *remainingCards;
 
-- (FISPlayingCard *)drawRandomCard;
-- (void)addCard:(FISPlayingCard *)card;
 - (instancetype)init;
+
+- (FISPlayingCard *)drawFirstCard;
+
+- (void)shuffleRemainingCards;
 
 @end

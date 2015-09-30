@@ -2,29 +2,22 @@
 
 #import "FISAppDelegate.h"
 #import "FISBlackjackGame.h"
+#import "FISPlayingCard.h"
+#import "FISPlayingCardDeck.h"
 
 @implementation FISAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
     
-    //FISPlayingCardDeck *deck = [[FISPlayingCardDeck alloc] init];
-    FISBlackjackGame *game = [[FISBlackjackGame alloc] init];
-    [game deal];
+    FISPlayingCard *defaultCard = [[FISPlayingCard alloc] init];
     
-    while (!game.isBusted && !game.isBlackjack) {
-        [game hit];
-        NSLog(@"%@", game.hand);
-    }
+    NSLog(@"default card: %@", defaultCard.cardLabel);
     
-    if (game.isBlackjack)
-    {
-        NSLog(@"Blackjack! Score = %@", game.handScore);
-    }
-    else
-    {
-        NSLog(@"Busted! Score = %@", game.handScore);
-    }
+    FISPlayingCardDeck *deck = [[FISPlayingCardDeck alloc] init];
+    FISPlayingCard *draw = [deck drawFirstCard];
+    
+    NSLog(@"draw: %@", draw.cardLabel);
     
     return YES;
 }

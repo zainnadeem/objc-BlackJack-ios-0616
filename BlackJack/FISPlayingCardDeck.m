@@ -10,47 +10,53 @@
     self = [super init];
     if (self)
     {
-        [self setupPlayingCardDeck];
+        _remainingCards = [[NSMutableArray alloc] init];
+        [self generateCards];
     }
     return self;
 }
 
-- (NSMutableArray *)cards
-{
-    if (!_cards)
-    {
-        _cards = [[NSMutableArray alloc] init];
+- (void)generateCards {
+    NSArray *validSuits = [FISPlayingCard validSuits];
+    NSArray *validRanks = [FISPlayingCard validRanks];
+    
+    for (NSString *suit in validSuits) {
+        for (NSString *rank in validRanks) {
+            FISPlayingCard *newCard = [[FISPlayingCard alloc] initWithSuit:suit rank:rank];
+            [self.remainingCards addObject:newCard];
+        }
     }
-    return _cards;
+    NSLog(@"Generated new cards, count: %lu", self.remainingCards.count);
 }
 
-- (FISPlayingCard *)drawRandomCard
-{
-    FISPlayingCard *randomCard = [[FISPlayingCard alloc] init];
+- (FISPlayingCard *)drawFirstCard {
     
-    if (self.cards.count)
-    {
-        int index = arc4random() % self.cards.count;
-        randomCard = self.cards[index];
-        [self.cards removeObjectAtIndex:index];
+    if (self.remainingCards.count == 0) {
+        NSLog(@"The deck is empty.");
+        return nil;
     }
     
-    return randomCard;
+    FISPlayingCard *firstCard = self.remainingCards[0];
+    [self.remainingCards removeObjectAtIndex:0];
+    
+    return firstCard;
 }
+
+- (void)shuffleRemainingCards {
+    
+}
+
 
 - (void)addCard:(FISPlayingCard *)card
 {
-    [self.cards addObject:card];
+ //   [self.cards addObject:card];
 }
+//
+//if (self.cards.count)
+//{
+//    int index = arc4random() % self.cards.count;
+//    randomCard = self.cards[index];
+//    [self.cards removeObjectAtIndex:index];
+//}
 
-- (void)setupPlayingCardDeck
-{
-    for (NSString *suit in [FISPlayingCard validSuits])
-    {
-        for (NSUInteger rank = 1; rank <= [[FISPlayingCard maxRank] integerValue]; rank++)
-        {
-            [self addCard:[[FISPlayingCard alloc] initWithSuit:suit rank:@(rank)]];
-        }
-    }
-}
 @end
