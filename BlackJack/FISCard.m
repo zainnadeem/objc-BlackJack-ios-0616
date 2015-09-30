@@ -2,6 +2,13 @@
 
 #import "FISCard.h"
 
+@interface FISCard ()
+
+@property (strong, nonatomic, readwrite) NSString *cardLabel;
+@property (nonatomic, readwrite) NSUInteger cardValue;
+
+@end
+
 @implementation FISCard
 
 + (NSArray *)validSuits {
@@ -36,7 +43,7 @@
     return cardLabel;
 }
 
-- (NSInteger)cardValueForRank {
+- (NSUInteger)cardValueForRank {
     NSArray *validRanks = [FISCard validRanks];
     
     NSUInteger index = [validRanks indexOfObject:self.rank];

@@ -83,6 +83,50 @@ describe(@"FISCard", ^{
         });
     });
     
+    describe(@"cardValueForRank", ^{
+        it(@"should return 1 for Ace", ^{
+            defaultCard = [[FISCard alloc] initWithSuit:@"!" rank:@"A"];
+            
+            expect(defaultCard.cardValue).to.equal(1);
+        });
+        
+        it(@"should return 2 for 2", ^{
+            defaultCard = [[FISCard alloc] initWithSuit:@"!" rank:@"2"];
+            
+            expect(defaultCard.cardValue).to.equal(2);
+        });
+
+        it(@"should return 9 for 9", ^{
+            defaultCard = [[FISCard alloc] initWithSuit:@"!" rank:@"9"];
+            
+            expect(defaultCard.cardValue).to.equal(9);
+        });
+
+        it(@"should return 10 for 10", ^{
+            defaultCard = [[FISCard alloc] initWithSuit:@"!" rank:@"10"];
+            
+            expect(defaultCard.cardValue).to.equal(10);
+        });
+
+        it(@"should return 10 for Jack", ^{
+            defaultCard = [[FISCard alloc] initWithSuit:@"!" rank:@"J"];
+            
+            expect(defaultCard.cardValue).to.equal(10);
+        });
+
+        it(@"should return 10 for Queen", ^{
+            defaultCard = [[FISCard alloc] initWithSuit:@"!" rank:@"Q"];
+            
+            expect(defaultCard.cardValue).to.equal(10);
+        });
+
+        it(@"should return 10 for King", ^{
+            defaultCard = [[FISCard alloc] initWithSuit:@"!" rank:@"K"];
+            
+            expect(defaultCard.cardValue).to.equal(10);
+        });
+    });
+    
     describe(@"description property", ^{
         it(@"should return '♥Q' for queenOfHearts", ^{
             expect(queenOfHearts.description).to.equal(@"♥Q");
