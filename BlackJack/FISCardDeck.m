@@ -5,15 +5,16 @@
 
 @implementation FISCardDeck
 
-- (instancetype)init
-{
+- (instancetype)init {
+    
     self = [super init];
-    if (self)
-    {
+    
+    if (self) {
         _remainingCards = [[NSMutableArray alloc] init];
         _dealtCards = [[NSMutableArray alloc] init];
         [self generateCards];
     }
+    
     return self;
 }
 
@@ -80,7 +81,7 @@
         [result appendFormat:@"\n    %@", card.description];
     }
     
-    return [result copy];
+    return result;
 }
 
 

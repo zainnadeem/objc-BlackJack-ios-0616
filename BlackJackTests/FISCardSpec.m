@@ -15,12 +15,14 @@ describe(@"FISCard", ^{
     __block FISCard *queenOfHearts;
     __block FISCard *aceOfSpades;
     __block FISCard *twoOfClubs;
+    __block FISCard *tenOfDiamonds;
     
     beforeEach(^{
         defaultCard = [[FISCard alloc] init];
         queenOfHearts = [[FISCard alloc] initWithSuit:@"♥" rank:@"Q"];
         aceOfSpades = [[FISCard alloc] initWithSuit:@"♠" rank:@"A"];
         twoOfClubs = [[FISCard alloc] initWithSuit:@"♣" rank:@"2"];
+        tenOfDiamonds = [[FISCard alloc] initWithSuit:@"♦" rank:@"10"];
     });
     
     describe(@"validSuits", ^{
@@ -81,6 +83,17 @@ describe(@"FISCard", ^{
         it(@"should set cardValue to '1' for twoOfClubs", ^{
             expect(twoOfClubs.cardValue).to.equal(2);
         });
+        
+        it(@"should set suit to '♦' and rank to '10' for tenOfDiamonds", ^{
+            expect(tenOfDiamonds.suit).to.equal(@"♦");
+            expect(tenOfDiamonds.rank).to.equal(@"10");
+        });
+        it(@"should set cardLabel to '♦10' for tenOfDiamonds", ^{
+            expect(tenOfDiamonds.cardLabel).to.equal(@"♦10");
+        });
+        it(@"should set cardValue to '10' for tenOfDiamonds", ^{
+            expect(tenOfDiamonds.cardValue).to.equal(10);
+        });
     });
     
     describe(@"cardValueForRank", ^{
@@ -136,6 +149,9 @@ describe(@"FISCard", ^{
         });
         it(@"should return '♣2' for twoOfClubs", ^{
             expect(twoOfClubs.description).to.equal(@"♣2");
+        });
+        it(@"should return '♦10' for tenOfDiamonds", ^{
+            expect(tenOfDiamonds.description).to.equal(@"♦10");
         });
     });
 });

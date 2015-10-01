@@ -8,11 +8,6 @@
 @property (strong, nonatomic, readwrite) NSMutableArray *cardsInHand;
 @property (nonatomic, readwrite) NSUInteger handscore;
 
-@property (nonatomic, readwrite) BOOL aceInHand;
-@property (nonatomic, readwrite) BOOL stayed;
-@property (nonatomic, readwrite) BOOL blackjack;
-@property (nonatomic, readwrite) BOOL busted;
-
 @end
 
 @implementation FISBlackjackPlayer
@@ -23,12 +18,14 @@
 }
 
 - (instancetype)initWithName:(NSString *)name {
+    
     self = [super init];
     
     if (self) {
         _name = name;
         _cardsInHand = [[NSMutableArray alloc] init];
         _handscore = 0;
+        _aceInHand = NO;
         _stayed = NO;
         _blackjack = NO;
         _busted = NO;

@@ -3,6 +3,7 @@
 #import "Specta.h"
 #define EXP_SHORTHAND
 #import "Expecta.h"
+#import <EXPMatchers+equalInAnyOrder.h>
 #import "FISCardDeck.h"
 #import "FISCard.h"
 
@@ -106,12 +107,6 @@ describe(@"FISCardDeck", ^{
             expect(dealtCardsSet.count).to.equal(3);
         });
     });
-
-    describe(@"resetDeck", ^{
-        it(@"", ^{
-            
-        });
-    });
     
     __block FISCardDeck *gatheringCardDeck;
     
@@ -139,17 +134,92 @@ describe(@"FISCardDeck", ^{
             });
         });
     });
-
-    describe(@"shuffleRemainingCards", ^{
-        it(@"", ^{
+    
+    __block FISCardDeck *shufflingCardDeck;
+    __block NSMutableArray *unshuffledCardLabels;
+    __block NSMutableArray *shuffledCardLabels;
+    
+    beforeEach(^{
+        
+        shufflingCardDeck = [[FISCardDeck alloc] init];
+        
+        unshuffledCardLabels = [[NSMutableArray alloc] init];
+        for (FISCard *card in shufflingCardDeck.remainingCards) {
+            [unshuffledCardLabels addObject:card.cardLabel];
+        }
+        
+        [shufflingCardDeck shuffleRemainingCards];
+        
+        shuffledCardLabels = [[NSMutableArray alloc] init];
+        for (FISCard *card in shufflingCardDeck.remainingCards) {
+            [shuffledCardLabels addObject:card.cardLabel];
+        }
+        
+        describe(@"shuffleRemainingCards", ^{
+            it(@"should still contain 52 cards", ^{
+                expect(shufflingCardDeck.remainingCards.count).to.equal(52);
+            });
             
+            it(@"should change the order of the cards in the deck's remainingCards array", ^{
+                expect(unshuffledCardLabels).toNot.equal(shuffledCardLabels);
+            });
+            
+            it(@"should still contain all of the same cards", ^{
+                expect(unshuffledCardLabels).to.equalInAnyOrder(shuffledCardLabels);
+            });
+        });
+    });
+    
+    __block FISCardDeck *resettingCardDeck;
+    __block NSMutableArray *originalCardLabels;
+    __block NSMutableArray *resetCardLabels;
+    
+    beforeEach(^{
+        
+        resettingCardDeck = [[FISCardDeck alloc] init];
+        
+        for (FISCard *card in resettingCardDeck.remainingCards) {
+            [originalCardLabels addObject:card.cardLabel];
+        }
+        
+        for (NSUInteger i = 0; i < 52; i++) {
+            [resettingCardDeck drawNextCard];
+        }
+        
+        [resettingCardDeck resetDeck];
+        
+        for (FISCard *card in resettingCardDeck.remainingCards) {
+            [resetCardLabels addObject:card.cardLabel];
+        }
+        
+        describe(@"resetDeck", ^{
+            it(@"should have 52 cards in the remainingCards array", ^{
+                expect(resettingCardDeck.remainingCards.count).to.equal(52);
+            });
+            
+            it(@"should have 0 cards in the dealtCards array", ^{
+                expect(resettingCardDeck.dealtCards.count).to.equal(0);
+            });
+            
+            it(@"should shuffle the cards when resetting", ^{
+                expect(originalCardLabels).toNot.equal(resetCardLabels);
+            });
+            
+            it(@"should not create duplicates when resetting", ^{
+                expect(originalCardLabels).to.equalInAnyOrder(resetCardLabels);
+            });
         });
     });
     
     describe(@"description property", ^{
-        it(@"", ^{
-            
+        it(@"should contain the word 'count'", ^{
+            expect(cardDeck.description.lowercaseString).to.contain(@"count");
         });
+        
+        it(@"should contain the word 'cards'", ^{
+            expect(cardDeck.description.lowercaseString).to.contain(@"cards");
+        });
+        
     });
 });
 

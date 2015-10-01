@@ -28,8 +28,7 @@
     
     self = [super init];
     
-    if (self)
-    {
+    if (self) {
         _suit = suit;
         _rank = rank;
         _cardLabel = [self cardLabelForSuitAndRank];

@@ -9,10 +9,10 @@
 @property (strong, nonatomic, readonly) NSMutableArray *cardsInHand;
 @property (nonatomic, readonly) NSUInteger handscore;
 
-@property (nonatomic, readonly) BOOL aceInHand;
-@property (nonatomic, readonly) BOOL stayed;
-@property (nonatomic, readonly) BOOL blackjack;
-@property (nonatomic, readonly) BOOL busted;
+@property (nonatomic) BOOL aceInHand;
+@property (nonatomic) BOOL stayed;
+@property (nonatomic) BOOL blackjack;
+@property (nonatomic) BOOL busted;
 
 @property (nonatomic) NSUInteger wins;
 @property (nonatomic) NSUInteger losses;

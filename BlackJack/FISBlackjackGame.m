@@ -6,7 +6,9 @@
 @implementation FISBlackjackGame
 
 - (instancetype)init {
+    
     self = [super init];
+    
     if (self) {
         _deck = [[FISCardDeck alloc] init];
         _house = [[FISBlackjackPlayer alloc] initWithName:@"House"];
@@ -80,7 +82,6 @@
     if (houseWillHit) {
         [self dealCardToHouse];
     }
-
 }
 
 - (BOOL)houseWins {

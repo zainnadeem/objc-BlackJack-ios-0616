@@ -3,8 +3,7 @@
 #import "Specta.h"
 #define EXP_SHORTHAND
 #import <Expecta.h>
-//#import "FISBlackjackGame.h"
-//#import "FISPlayingCard.h"
+#import "FISBlackjackGame.h"
 
 
 SpecBegin(FISBlackjackGame)
