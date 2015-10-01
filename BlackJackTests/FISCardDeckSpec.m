@@ -117,23 +117,24 @@ describe(@"FISCardDeck", ^{
         for (NSUInteger i = 0; i < 52; i++) {
             [gatheringCardDeck drawNextCard];
         }
+    });
+    
+    describe(@"gatherDealtCards", ^{
+        it(@"should add the dealtCards back into the remainingCards array", ^{
+            expect(cardDeck.remainingCards.count).to.equal(52);
+        });
         
-        describe(@"gatherDealtCards", ^{
-            it(@"should add the dealtCards back into the remainingCards array", ^{
-                expect(cardDeck.remainingCards.count).to.equal(52);
-            });
+        it(@"should empty the dealtCards array", ^{
+            expect(cardDeck.dealtCards.count).to.equal(0);
+        });
+        
+        it(@"should return nil if the remainingCards array is empty", ^{
+            FISCard *fiftyThirdCard = [gatheringCardDeck drawNextCard];
             
-            it(@"should empty the dealtCards array", ^{
-                expect(cardDeck.dealtCards.count).to.equal(0);
-            });
-            
-            it(@"should return nil if the remainingCards array is empty", ^{
-                FISCard *fiftyThirdCard = [gatheringCardDeck drawNextCard];
-                
-                expect(fiftyThirdCard).to.beNil();
-            });
+            expect(fiftyThirdCard).to.beNil();
         });
     });
+    
     
     __block FISCardDeck *shufflingCardDeck;
     __block NSMutableArray *unshuffledCardLabels;
@@ -154,19 +155,19 @@ describe(@"FISCardDeck", ^{
         for (FISCard *card in shufflingCardDeck.remainingCards) {
             [shuffledCardLabels addObject:card.cardLabel];
         }
+    });
         
-        describe(@"shuffleRemainingCards", ^{
-            it(@"should still contain 52 cards", ^{
-                expect(shufflingCardDeck.remainingCards.count).to.equal(52);
-            });
-            
-            it(@"should change the order of the cards in the deck's remainingCards array", ^{
-                expect(unshuffledCardLabels).toNot.equal(shuffledCardLabels);
-            });
-            
-            it(@"should still contain all of the same cards", ^{
-                expect(unshuffledCardLabels).to.equalInAnyOrder(shuffledCardLabels);
-            });
+    describe(@"shuffleRemainingCards", ^{
+        it(@"should still contain 52 cards", ^{
+            expect(shufflingCardDeck.remainingCards.count).to.equal(52);
+        });
+        
+        it(@"should change the order of the cards in the deck's remainingCards array", ^{
+            expect(unshuffledCardLabels).toNot.equal(shuffledCardLabels);
+        });
+        
+        it(@"should still contain all of the same cards", ^{
+            expect(unshuffledCardLabels).to.equalInAnyOrder(shuffledCardLabels);
         });
     });
     
@@ -177,6 +178,8 @@ describe(@"FISCardDeck", ^{
     beforeEach(^{
         
         resettingCardDeck = [[FISCardDeck alloc] init];
+        originalCardLabels = [[NSMutableArray alloc] init];
+        resetCardLabels = [[NSMutableArray alloc] init];
         
         for (FISCard *card in resettingCardDeck.remainingCards) {
             [originalCardLabels addObject:card.cardLabel];
@@ -191,23 +194,23 @@ describe(@"FISCardDeck", ^{
         for (FISCard *card in resettingCardDeck.remainingCards) {
             [resetCardLabels addObject:card.cardLabel];
         }
+    });
         
-        describe(@"resetDeck", ^{
-            it(@"should have 52 cards in the remainingCards array", ^{
-                expect(resettingCardDeck.remainingCards.count).to.equal(52);
-            });
-            
-            it(@"should have 0 cards in the dealtCards array", ^{
-                expect(resettingCardDeck.dealtCards.count).to.equal(0);
-            });
-            
-            it(@"should shuffle the cards when resetting", ^{
-                expect(originalCardLabels).toNot.equal(resetCardLabels);
-            });
-            
-            it(@"should not create duplicates when resetting", ^{
-                expect(originalCardLabels).to.equalInAnyOrder(resetCardLabels);
-            });
+    describe(@"resetDeck", ^{
+        it(@"should have 52 cards in the remainingCards array", ^{
+            expect(resettingCardDeck.remainingCards.count).to.equal(52);
+        });
+        
+        it(@"should have 0 cards in the dealtCards array", ^{
+            expect(resettingCardDeck.dealtCards.count).to.equal(0);
+        });
+        
+        it(@"should shuffle the cards when resetting", ^{
+            expect(originalCardLabels).toNot.equal(resetCardLabels);
+        });
+        
+        it(@"should not create duplicates when resetting", ^{
+            expect(originalCardLabels).to.equalInAnyOrder(resetCardLabels);
         });
     });
     
