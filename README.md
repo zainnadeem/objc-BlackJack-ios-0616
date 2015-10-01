@@ -1,12 +1,10 @@
+# BlackJack Console
 
-
-BlackJack 
-=======
-
-### Goals 
+## Objectives
+ 
  - **Put it all together!** Use your knowledge of custom classes, properties, and methods to create a playable card game.
 
-### Instructions 
+## Instructions 
 
 We'll be building a BlackJack game. Take a minute and think about how the game could be broken down into classes... we're going to need cards, a deck, and a class for the game itself. 
 

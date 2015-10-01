@@ -5,7 +5,7 @@
 #import "Expecta.h"
 #import <EXPMatchers+equalInAnyOrder.h>
 #import "FISCardDeck.h"
-#import "FISCard.h"
+
 
 SpecBegin(FISCardDeck)
 
