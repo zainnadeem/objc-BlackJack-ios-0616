@@ -12,25 +12,11 @@
     
     FISBlackjackGame *game = [[FISBlackjackGame alloc] init];
     
-    NSLog(@"%@", game.player);
-    NSLog(@"%@", game.house);
-    
     [game playBlackjack];
-    
-    NSLog(@"%@", game.player);
-    NSLog(@"%@", game.house);
 
     [game playBlackjack];
     
-    NSLog(@"%@", game.player);
-    NSLog(@"%@", game.house);
-
     [game playBlackjack];
-    
-    NSLog(@"%@", game.player);
-    NSLog(@"%@", game.house);
-
-    
     
     return YES;
 }

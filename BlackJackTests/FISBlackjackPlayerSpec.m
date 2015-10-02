@@ -183,6 +183,38 @@ describe(@"FISBlackjackPlayer", ^{
         });
     });
     
+    __block FISBlackjackPlayer *decideToHitPlayer;
+    
+    beforeEach(^{
+        
+        decideToHitPlayer = [[FISBlackjackPlayer alloc] init];
+        
+    });
+    
+    describe(@"decideToHit", ^{
+        it(@"should decide to hit if the handscore is 12", ^{
+            [decideToHitPlayer acceptCard:queenOfHearts];
+            [decideToHitPlayer acceptCard:twoOfClubs];
+            
+            expect([decideToHitPlayer decideToHit]).to.beTruthy();
+        });
+        
+        it(@"should decide not to hit if the handscore is 20", ^{
+            [decideToHitPlayer acceptCard:queenOfHearts];
+            [decideToHitPlayer acceptCard:tenOfDiamonds];
+            
+            expect([decideToHitPlayer decideToHit]).to.beFalsy();
+        });
+        
+        it(@"should set stayed to YES if decideToHit returns NO", ^{
+            [decideToHitPlayer acceptCard:queenOfHearts];
+            [decideToHitPlayer acceptCard:tenOfDiamonds];
+            
+            expect([decideToHitPlayer decideToHit]).to.beFalsy();
+            expect(decideToHitPlayer.stayed).to.beTruthy();
+        });
+    });
+    
     __block FISBlackjackPlayer *newGamePlayer;
     
     beforeEach(^{
@@ -248,37 +280,6 @@ describe(@"FISBlackjackPlayer", ^{
             newGamePlayer.losses = 24;
             
             expect(newGamePlayer.losses).to.equal(24);
-        });
-    });
-
-    __block FISBlackjackPlayer *decideToHitPlayer;
-    
-    beforeEach(^{
-        
-        decideToHitPlayer = [[FISBlackjackPlayer alloc] init];
-    });
-    
-    describe(@"decideToHit", ^{
-        it(@"should decide to hit if the handscore is 12", ^{
-            [decideToHitPlayer acceptCard:queenOfHearts];
-            [decideToHitPlayer acceptCard:twoOfClubs];
-            
-            expect([decideToHitPlayer decideToHit]).to.beTruthy();
-        });
-        
-        it(@"should decide not to hit if the handscore is 20", ^{
-            [decideToHitPlayer acceptCard:queenOfHearts];
-            [decideToHitPlayer acceptCard:tenOfDiamonds];
-            
-            expect([decideToHitPlayer decideToHit]).to.beFalsy();
-        });
-        
-        it(@"should set stayed to YES if decideToHit returns NO", ^{
-            [decideToHitPlayer acceptCard:queenOfHearts];
-            [decideToHitPlayer acceptCard:tenOfDiamonds];
-            
-            expect([decideToHitPlayer decideToHit]).to.beFalsy();
-            expect(decideToHitPlayer.stayed).to.beTruthy();
         });
     });
     

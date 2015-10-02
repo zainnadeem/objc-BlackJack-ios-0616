@@ -39,6 +39,9 @@
     
     BOOL houseWins = [self houseWins];
     [self incrementWinsAndLossesForHouseWins:houseWins];
+    
+    NSLog(@"%@", self.player);
+    NSLog(@"%@", self.house);
 }
 
 - (void)newDeal {
