@@ -1,7 +1,6 @@
 //  FISCardDeck.m
 
 #import "FISCardDeck.h"
-#import "FISCard.h"
 
 @implementation FISCardDeck
 
@@ -74,11 +73,16 @@
 - (NSString *)description {
     NSMutableString *result = [[NSMutableString alloc] init];
     
-    [result appendFormat:@"\ncount: %lu", self.remainingCards.count];
+    [result appendFormat:@"FISCardDeck\ncount: %lu", self.remainingCards.count];
     
     [result appendString:@"\ncards:"];
-    for (FISCard *card in self.remainingCards) {
-        [result appendFormat:@"\n    %@", card.description];
+    for (NSUInteger i = 0; i < self.remainingCards.count; i++) {
+        if (i % 13 == 0) {
+            [result appendString:@"\n"];
+        }
+        
+        FISCard *card = self.remainingCards[i];
+        [result appendFormat:@"  %@", card.description];
     }
     
     return result;

@@ -4,6 +4,8 @@
 
 @interface FISCard ()
 
+@property (strong, nonatomic, readwrite) NSString *suit;
+@property (strong, nonatomic, readwrite) NSString *rank;
 @property (strong, nonatomic, readwrite) NSString *cardLabel;
 @property (nonatomic, readwrite) NSUInteger cardValue;
 
@@ -34,6 +36,7 @@
         _cardLabel = [self cardLabelForSuitAndRank];
         _cardValue = [self cardValueForRank];
     }
+    
     return self;
 }
 

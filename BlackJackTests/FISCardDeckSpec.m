@@ -91,6 +91,12 @@ describe(@"FISCardDeck", ^{
             expect(cardDeck.dealtCards.count).to.equal(3);
         });
         
+        it(@"should remove the drawn card from the remainingCards array", ^{
+            FISCard *card = [cardDeck drawNextCard];
+            
+            expect(cardDeck.remainingCards).toNot.contain(card);
+        });
+        
         it(@"should insert the drawn card into the dealtCards array", ^{
             FISCard *card = [cardDeck drawNextCard];
             

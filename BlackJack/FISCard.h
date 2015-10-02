@@ -5,9 +5,8 @@
 + (NSArray *)validSuits;
 + (NSArray *)validRanks;
 
-@property (strong, nonatomic) NSString *suit;
-@property (strong, nonatomic) NSString *rank;
-
+@property (strong, nonatomic, readonly) NSString *suit;
+@property (strong, nonatomic, readonly) NSString *rank;
 @property (strong, nonatomic, readonly) NSString *cardLabel;
 @property (nonatomic, readonly) NSUInteger cardValue;
 
