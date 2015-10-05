@@ -23,7 +23,7 @@ Fork and clone this lab.
 
 ##### A. Reuse `FISCard` and `FISCardDeck` from OOP-Cards-Model
 
-This lab reuses the `FISCard` and `FISCardDeck` classes created in the OOP-Cards-Model lab. Find a way to bring your code for those classes into your `BlackJack` project. While you can feasibly copy & paste your code between projects using the clipboard, think about how you could use the `pwd` ("print working director"), `cp` ("copy"), and `mv` ("move") bash commands to duplicate the `FISCard.h`, `FISCard.m`, `FISCardDeck.h`, and `FISCardDeck.m` files right in the terminal. The exact command will vary based upon the relative path between your lab folders on your own machine, so we can't give you exact directions for how to do this. Their most appropriate destination within this lab is the `objc-blackjack/BlackJack` directory (which should also contain the `FISAppDelegate` class files). If you use bash to copy the files, you'll need to add them to your Xcode project once they're in the correct directory by selecting File --> Add Files to "BlackJack" from the taskbar. Verify that the file paths point into the Blackjack repository and not the OOP-Cards-Model repository.
+This lab reuses the `FISCard` and `FISCardDeck` classes created in the OOP-Cards-Model lab. Find a way to bring your code for those classes into your `BlackJack` project. While you can feasibly copy & paste your code between projects using the clipboard, think about how you could use the `pwd` ("print working directory"), `cp` ("copy"), and `mv` ("move") bash commands to duplicate the `FISCard.h`, `FISCard.m`, `FISCardDeck.h`, and `FISCardDeck.m` files right in the terminal. The exact command will vary based upon the relative path between your lab folders on your own machine, so we can't give you exact directions for how to do this. Their most appropriate destination within this lab is the `objc-blackjack/BlackJack` directory (which should also contain the `FISAppDelegate` class files). If you use bash to copy the files, you'll need to add them to your Xcode project once they're in the correct directory by selecting File --> Add Files to "BlackJack" from the taskbar. Verify that the file paths point into the Blackjack repository and not the OOP-Cards-Model repository.
 
 **Note:** *If using the terminal intimidates you, simply create the* `FISCard` *and* `FISCardDeck` *class files in Xcode as normal and use the clipboard to copy & paste your code.*
 
@@ -38,11 +38,11 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
      * a `FISBlackjackPlayer` called `player`.  
   * And declare the following public methods:
      * `playBlackjack` which provides no return,
-     * `newDeal` which provides no return,
+     * `dealNewRound` which provides no return,
      * `dealCardToPlayer` which provides no return,
      * `dealCardToHouse` which provides no return,
-     * `playerTurn` which provides no return,
-     * `houseTurn` which provides no return,
+     * `processPlayerTurn` which provides no return,
+     * `processHouseTurn` which provides no return,
      * `houseWins`, which returns a `BOOL`,
      * `incrementWinsAndLossesForHouseWins:` which takes one argument, a `BOOL` called `houseWins`, and provides no return.
 
@@ -62,11 +62,11 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
      * an `NSUInteger` called `losses`;
   * Declare the following methods:
      * a designated initializer which takes one argument, an `NSString` for `name`,
-     * `newGame` which provides no return,
+     * `resetForNewGame` which provides no return,
      * `acceptCard:` which takes one argument, a `FISCard` called `card`, and provides no return, and
      * `decideToHit` which returns `BOOL`.
 
-4. In `FIBlackjackPlayer.m`, redeclare the three `readonly` properties `name`, `cardsInHand`, and `handscore` as privately `readwrite`. Define the designated initializer to `return [super init];`, the `void` methods `newGame` and `acceptCard:` to empty implementations, and `decideToHit` to `return NO;`.
+4. In `FIBlackjackPlayer.m`, redeclare the three `readonly` properties `name`, `cardsInHand`, and `handscore` as privately `readwrite`. Define the designated initializer to `return [super init];`, the `void` methods `resetForNewGame` and `acceptCard:` to empty implementations, and `decideToHit` to `return NO;`.
 
 5. At this point, the test suite should successfully build. Go ahead and run the tests to check for initial failures. If you have any errors, double-check your set up. If you successfully copied your implementations of `FISCard` and `FISCardDeck`, then all of the tests on those classes should already succeed.
 
@@ -96,7 +96,7 @@ All of the tests for `acceptCard:` should pass before you move on.
 7. Write the implementation for the `decideToHit` method. This is how the player decides whether to accept a new card ("to hit") or stop at its current score until the end of the game ("to stay"). After staying, the player cannot take a new card for the rest of the current game. A simple implementation of the decision making method is to just have the player follow "house rules": which is to say that the house is required to openly declare at what score it will stay—typically either 16 or 17.
   * Choose either 16 or 17 as the maximum score to hit. Use an `if` statement that compares the current `handscore` to the value you've chosen. If the `handscore` is greater than that value, set the `stayed` property to `YES` and `return NO;`, otherwise return `YES`.
 
-8. Write the implementation for the `newGame` which tells the player how to reset for a new game. It should:
+8. Write the implementation for the `resetForNewGame` which tells the player how to reset for a new game. It should:
   * empty the `cardsInHand` array,
   * set `handscore` to zero, and
   * set the four boolean values (`aceInHand`, `stayed`, `blackjack`, and `busted`) to `NO`.  
@@ -131,9 +131,9 @@ Now that we've taught our `FISBlackjackPlayer` class how to play Blackjack, let'
 
 2. Next, write the implementations for `dealCardToPlayer` and `dealCardToHouse`. They should use `FISCardDeck`'s `drawNextCard` method to get the next card from the `deck`, and use `FISBlackjackPlayer`'s `acceptCard:` method to pass the card to the respective player.
 
-3. Write the implementation for `newDeal`. This is the first deal of a new game which provides two cards to each player. Remember that cards should be dealt one at a time to all players in a round. (*Can you use a loop with two iterations to avoid repeating your code?*).
+3. Write the implementation for `dealNewRound`. This is the first deal of a new game which provides two cards to each player. Remember that cards should be dealt one at a time to all players in a round. (*Can you use a loop with two iterations to avoid repeating your code?*).
 
-4. Now write the implementations for the `playerTurn` and `houseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed, however, they may choose to either hit or stay. (*Can you use the boolean values owned by the player and the house to evaluate their permission to hit? Also, remember that we set up a* `decideToHit` *method on the player class.*)
+4. Now write the implementations for the `processPlayerTurn` and `processHouseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed, however, they may choose to either hit or stay. (*Can you use the boolean values owned by the player and the house to evaluate their permission to hit? Also, remember that we set up a* `decideToHit` *method on the player class.*)
 
 5. Now write the implementation for the `houseWins` method. This returns a boolean of whether or not the house has won (you may treat a "push", which is when both the player and the house have blackjack hands, as a loss for the house). Keep in mind that if the house has busted, the player wins. If the player has busted, then the house wins. And the player only wins with a score that *exceeds* the house's score (the house wins ties).
 
@@ -141,7 +141,7 @@ Now that we've taught our `FISBlackjackPlayer` class how to play Blackjack, let'
 
 7. At this point, all of the tests should be passing. You've written all the logic for the individual steps of playing Blackjack. Now, put them together inside the `playBlackjack` method. 
   * Start by resetting the deck and telling the players to start a new game. 
-  * Then, deal a new round (`newDeal`). 
+  * Then, deal a new round (`dealNewRound`). 
   * Since some Blackjack rules allow a hand limit of five cards, create a loop with a maximum of three iterations. Within the loop, give the player its turn, and then the house. Keep in mind that as soon as the player or the house busts, the round is over. Detect a bust after each dealt card by evaluating the `busted` property for the player or the house respectively. **Hint:** *Use the* `break;` *keyword to escape a loop without escaping the method.*
   * After the loop ends, evaluate the winner by calling the `houseWins` method and use the `incrementWinsAndLossesForHouseWins:` to keep the tally of the rounds.
   * Finally, use a pair of `NSLog()`s to print the descriptions of `player` and `house` to the console. 
@@ -220,7 +220,7 @@ These are some options for continuing to work on this concept beyond the provide
 
 1. Refactor the `dealCardToPlayer` and `dealCardToHouse` methods into a single method that accepts a `FISBlackjackPlayer` argument and uses the same logic to deal to either player.
 
-2. Refactor the `playerTurn` and `houseTurn` methods into a single method that accepts ` FISBlackjackPlayer` argument and uses the same logic to offer a turn to both players.
+2. Refactor the `processPlayerTurn` and `processHouseTurn` methods into a single method that accepts ` FISBlackjackPlayer` argument and uses the same logic to offer a turn to both players.
 
 3. Refactor the `houseWins` method to accommodate the possibility of a "push" (when both the House and the Player have blackjack hands). Can you accomplish this while returning a `BOOL`? (*Probably not.*) Should the method still be called `houseWins` after you've changed the way it works?
 

@@ -17,14 +17,12 @@
 @property (nonatomic) NSUInteger wins;
 @property (nonatomic) NSUInteger losses;
 
-- (instancetype)init;
-
 - (instancetype)initWithName:(NSString *)name;
 
-- (void)newGame;
+- (void)resetForNewGame;
 
 - (void)acceptCard:(FISCard *)card;
 
-- (BOOL)decideToHit;
+- (BOOL)shouldHit;
 
 @end

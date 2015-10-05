@@ -196,21 +196,21 @@ describe(@"FISBlackjackPlayer", ^{
             [decideToHitPlayer acceptCard:queenOfHearts];
             [decideToHitPlayer acceptCard:twoOfClubs];
             
-            expect([decideToHitPlayer decideToHit]).to.beTruthy();
+            expect([decideToHitPlayer shouldHit]).to.beTruthy();
         });
         
         it(@"should decide not to hit if the handscore is 20", ^{
             [decideToHitPlayer acceptCard:queenOfHearts];
             [decideToHitPlayer acceptCard:tenOfDiamonds];
             
-            expect([decideToHitPlayer decideToHit]).to.beFalsy();
+            expect([decideToHitPlayer shouldHit]).to.beFalsy();
         });
         
         it(@"should set stayed to YES if decideToHit returns NO", ^{
             [decideToHitPlayer acceptCard:queenOfHearts];
             [decideToHitPlayer acceptCard:tenOfDiamonds];
             
-            expect([decideToHitPlayer decideToHit]).to.beFalsy();
+            expect([decideToHitPlayer shouldHit]).to.beFalsy();
             expect(decideToHitPlayer.stayed).to.beTruthy();
         });
     });
@@ -228,7 +228,7 @@ describe(@"FISBlackjackPlayer", ^{
             [newGamePlayer acceptCard:queenOfHearts];
             [newGamePlayer acceptCard:aceOfClubs];
             
-            [newGamePlayer newGame];
+            [newGamePlayer resetForNewGame];
             
             expect(newGamePlayer.cardsInHand.count).to.equal(0);
         });
@@ -237,35 +237,35 @@ describe(@"FISBlackjackPlayer", ^{
             [newGamePlayer acceptCard:queenOfHearts];
             [newGamePlayer acceptCard:aceOfClubs];
             
-            [newGamePlayer newGame];
+            [newGamePlayer resetForNewGame];
             
             expect(newGamePlayer.handscore).to.equal(0);
         });
         
         it(@"should set aceInHand to NO", ^{
             newGamePlayer.aceInHand = YES;
-            [newGamePlayer newGame];
+            [newGamePlayer resetForNewGame];
             
             expect(newGamePlayer.aceInHand).to.beFalsy();
         });
         
         it(@"should set stayed to NO", ^{
             newGamePlayer.stayed = YES;
-            [newGamePlayer newGame];
+            [newGamePlayer resetForNewGame];
             
             expect(newGamePlayer.stayed).to.beFalsy();
         });
         
         it(@"should set blackjack to NO", ^{
             newGamePlayer.blackjack = YES;
-            [newGamePlayer newGame];
+            [newGamePlayer resetForNewGame];
             
             expect(newGamePlayer.blackjack).to.beFalsy();
         });
         
         it(@"should set busted to NO", ^{
             newGamePlayer.busted = YES;
-            [newGamePlayer newGame];
+            [newGamePlayer resetForNewGame];
             
             expect(newGamePlayer.busted).to.beFalsy();
         });

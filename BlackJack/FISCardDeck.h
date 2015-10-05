@@ -7,8 +7,6 @@
 @property (strong, nonatomic) NSMutableArray *remainingCards;
 @property (strong, nonatomic) NSMutableArray *dealtCards;
 
-- (instancetype)init;
-
 - (FISCard *)drawNextCard;
 
 - (void)resetDeck;

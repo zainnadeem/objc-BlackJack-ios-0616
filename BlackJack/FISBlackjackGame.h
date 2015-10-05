@@ -14,15 +14,15 @@
 
 - (void)playBlackjack;
 
-- (void)newDeal;
+- (void)dealNewRound;
 
 - (void)dealCardToPlayer;
 
 - (void)dealCardToHouse;
 
-- (void)playerTurn;
+- (void)processPlayerTurn;
 
-- (void)houseTurn;
+- (void)processHouseTurn;
 
 - (BOOL)houseWins;
 

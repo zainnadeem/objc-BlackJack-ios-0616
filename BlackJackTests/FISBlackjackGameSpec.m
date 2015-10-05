@@ -71,7 +71,7 @@ describe(@"FISBlackjackGame", ^{
     
     describe(@"newDeal", ^{
         it(@"should deal two cards each to the player and to the house", ^{
-            [defaultGame newDeal];
+            [defaultGame dealNewRound];
             
             expect(defaultGame.player.cardsInHand.count).to.equal(2);
             expect(defaultGame.player.handscore).to.beGreaterThan(0);
@@ -83,7 +83,7 @@ describe(@"FISBlackjackGame", ^{
 
     describe(@"playerTurn", ^{
         it(@"should deal a card to the player if the player decides to hit", ^{
-            [defaultGame playerTurn];
+            [defaultGame processPlayerTurn];
             
             expect(defaultGame.player.cardsInHand.count).to.equal(1);
         });
@@ -91,21 +91,21 @@ describe(@"FISBlackjackGame", ^{
         it(@"should not deal a card to the player if the player decides not to hit", ^{
             [defaultGame.player acceptCard:tenOfDiamonds];
             [defaultGame.player acceptCard:queenOfHearts];
-            [defaultGame playerTurn];
+            [defaultGame processPlayerTurn];
             
             expect(defaultGame.player.cardsInHand.count).to.equal(2);
         });
         
         it(@"should not deal to the player if the player is busted", ^{
             defaultGame.player.busted = YES;
-            [defaultGame playerTurn];
+            [defaultGame processPlayerTurn];
             
             expect(defaultGame.player.cardsInHand.count).to.equal(0);
         });
         
         it(@"should not deal to the player if the player has stayed", ^{
             defaultGame.player.stayed = YES;
-            [defaultGame playerTurn];
+            [defaultGame processPlayerTurn];
             
             expect(defaultGame.player.cardsInHand.count).to.equal(0);
         });
@@ -113,7 +113,7 @@ describe(@"FISBlackjackGame", ^{
 
     describe(@"houseTurn", ^{
         it(@"should deal a card to the house if the house decides to hit", ^{
-            [defaultGame houseTurn];
+            [defaultGame processHouseTurn];
             
             expect(defaultGame.house.cardsInHand.count).to.equal(1);
         });
@@ -121,21 +121,21 @@ describe(@"FISBlackjackGame", ^{
         it(@"should not deal a card to the house if the house decides not to hit", ^{
             [defaultGame.house acceptCard:tenOfDiamonds];
             [defaultGame.house acceptCard:queenOfHearts];
-            [defaultGame houseTurn];
+            [defaultGame processHouseTurn];
             
             expect(defaultGame.house.cardsInHand.count).to.equal(2);
         });
         
         it(@"should not deal to the house if the house is busted", ^{
             defaultGame.house.busted = YES;
-            [defaultGame houseTurn];
+            [defaultGame processHouseTurn];
             
             expect(defaultGame.house.cardsInHand.count).to.equal(0);
         });
         
         it(@"should not deal to the house if the hosue has stayed", ^{
             defaultGame.house.stayed = YES;
-            [defaultGame houseTurn];
+            [defaultGame processHouseTurn];
             
             expect(defaultGame.house.cardsInHand.count).to.equal(0);
         });

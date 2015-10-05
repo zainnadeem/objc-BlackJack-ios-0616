@@ -37,7 +37,7 @@
     return self;
 }
 
-- (void)newGame {
+- (void)resetForNewGame {
     [self.cardsInHand removeAllObjects];
     self.handscore = 0;
     
@@ -85,7 +85,7 @@
     }
 }
 
-- (BOOL)decideToHit {
+- (BOOL)shouldHit {
     NSUInteger maxScoreToHit = 17;
     
     if (self.handscore > maxScoreToHit) {

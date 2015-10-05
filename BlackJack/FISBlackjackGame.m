@@ -20,18 +20,18 @@
 
 - (void)playBlackjack {
     [self.deck resetDeck];
-    [self.house newGame];
-    [self.player newGame];
+    [self.house resetForNewGame];
+    [self.player resetForNewGame];
     
-    [self newDeal];
+    [self dealNewRound];
     
     for (NSUInteger i = 0; i < 3; i++) {
-        [self playerTurn];
+        [self processPlayerTurn];
         if (self.player.busted) {
             break;
         }
         
-        [self houseTurn];
+        [self processHouseTurn];
         if (self.house.busted) {
             break;
         }
@@ -44,7 +44,7 @@
     NSLog(@"%@", self.house);
 }
 
-- (void)newDeal {
+- (void)dealNewRound {
     for (NSUInteger i = 0; i < 2; i++) {
         [self dealCardToPlayer];
         [self dealCardToHouse];
@@ -61,12 +61,12 @@
     [self.house acceptCard:card];
 }
 
-- (void)playerTurn {
+- (void)processPlayerTurn {
     BOOL playerMayHit = !self.player.busted && !self.player.stayed;
     
     BOOL playerWillHit = NO;
     if (playerMayHit) {
-        playerWillHit = [self.player decideToHit];
+        playerWillHit = [self.player shouldHit];
     }
     
     if (playerWillHit) {
@@ -74,12 +74,12 @@
     }
 }
 
-- (void)houseTurn {
+- (void)processHouseTurn {
     BOOL houseMayHit = !self.house.busted && !self.house.stayed;
     
     BOOL houseWillHit = NO;
     if (houseMayHit) {
-        houseWillHit = [self.house decideToHit];
+        houseWillHit = [self.house shouldHit];
     }
     
     if (houseWillHit) {
