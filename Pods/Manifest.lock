@@ -1,13 +1,17 @@
 PODS:
   - Expecta (1.0.3)
+  - Expecta+Collections (1.0.1):
+    - Expecta
   - Specta (1.0.4)
 
 DEPENDENCIES:
   - Expecta
+  - Expecta+Collections
   - Specta
 
 SPEC CHECKSUMS:
   Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  Expecta+Collections: 6fae193f42cb98dab08fe6a1ef579e97c65aa56a
   Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
 
 COCOAPODS: 0.38.2

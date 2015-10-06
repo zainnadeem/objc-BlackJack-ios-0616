@@ -9,9 +9,9 @@ target "BlackJack" do
 end
 
 target "BlackJackTests" do
-
   pod 'Specta' 
   pod 'Expecta'                                                
+  pod 'Expecta+Collections'
 
 end
 

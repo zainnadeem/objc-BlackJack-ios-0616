@@ -1,85 +1,122 @@
-//
 //  FISBlackjackGame.m
-//  BlackJack
-//
-//  Created by Al Tyus on 6/11/14.
-//  Copyright (c) 2014 Flatiron School. All rights reserved.
-//
 
 #import "FISBlackjackGame.h"
-#import "FISPlayingCard.h"
+#import "FISCard.h"
 
 @implementation FISBlackjackGame
 
-#import "FISBlackjackGame.h"
-#import "FISPlayingCard.h"
-
-
-- (instancetype)init
-{
+- (instancetype)init {
+    
     self = [super init];
-    if (self)
-    {
-        _playingCardDeck = [[FISPlayingCardDeck alloc] init];
-        _handScore = @0;
-        _hand = [[NSMutableArray alloc] init];
+    
+    if (self) {
+        _deck = [[FISCardDeck alloc] init];
+        _house = [[FISBlackjackPlayer alloc] initWithName:@"House"];
+        _player = [[FISBlackjackPlayer alloc] initWithName:@"Player"];
     }
     
     return self;
 }
-- (void)deal
-{
-    self.playingCardDeck = [[FISPlayingCardDeck alloc] init];
-    self.handScore = @0;
-    self.hand = [[NSMutableArray alloc] init];
+
+- (void)playBlackjack {
+    [self.deck resetDeck];
+    [self.house resetForNewGame];
+    [self.player resetForNewGame];
     
-    for (NSInteger x = 0; x < 2; x++)
-    {
-        [self.hand addObject:[self.playingCardDeck drawRandomCard]];
-    }
-}
-- (void)hit
-{
-    if ([self.hand count] && !self.isBusted && !self.isBlackjack)
-    {
-        [self.hand addObject:[self.playingCardDeck drawRandomCard]];
-    }
-}
-
-- (BOOL)isBusted
-{
-    return [self.handScore integerValue] > 21;
-}
-
-- (BOOL)isBlackjack
-{
-    return [self.handScore integerValue] == 21;
-}
-
-- (NSNumber *)handScore
-{
-    NSInteger score = 0;
-    for (FISPlayingCard *card in self.hand)
-    {
-        score += [card.score integerValue];
-    }
+    [self dealNewRound];
     
-    for (NSInteger x = 0; x < [self numberOfAces]; x++)
-    {
-        if (score + 10 <= 21)
-        {
-            score += 10;
+    for (NSUInteger i = 0; i < 3; i++) {
+        [self processPlayerTurn];
+        if (self.player.busted) {
+            break;
+        }
+        
+        [self processHouseTurn];
+        if (self.house.busted) {
+            break;
         }
     }
     
-    return @(score);
+    BOOL houseWins = [self houseWins];
+    [self incrementWinsAndLossesForHouseWins:houseWins];
+    
+    NSLog(@"%@", self.player);
+    NSLog(@"%@", self.house);
 }
 
-- (NSInteger)numberOfAces
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.rank == 1"];
+- (void)dealNewRound {
+    for (NSUInteger i = 0; i < 2; i++) {
+        [self dealCardToPlayer];
+        [self dealCardToHouse];
+    }
+}
+
+- (void)dealCardToPlayer {
+    FISCard *card = [self.deck drawNextCard];
+    [self.player acceptCard:card];
+}
+
+- (void)dealCardToHouse {
+    FISCard *card = [self.deck drawNextCard];
+    [self.house acceptCard:card];
+}
+
+- (void)processPlayerTurn {
+    BOOL playerMayHit = !self.player.busted && !self.player.stayed;
     
-    return (NSInteger)[[self.hand filteredArrayUsingPredicate:predicate] count];
+    BOOL playerWillHit = NO;
+    if (playerMayHit) {
+        playerWillHit = [self.player shouldHit];
+    }
+    
+    if (playerWillHit) {
+        [self dealCardToPlayer];
+    }
+}
+
+- (void)processHouseTurn {
+    BOOL houseMayHit = !self.house.busted && !self.house.stayed;
+    
+    BOOL houseWillHit = NO;
+    if (houseMayHit) {
+        houseWillHit = [self.house shouldHit];
+    }
+    
+    if (houseWillHit) {
+        [self dealCardToHouse];
+    }
+}
+
+- (BOOL)houseWins {
+    if (self.house.blackjack && self.player.blackjack) {
+        return NO; // this is actually a 'push'
+    }
+    
+    if (self.house.busted) {
+        return NO;
+    }
+    
+    if (self.player.busted) {
+        return YES;
+    }
+    
+    if (self.player.handscore > self.house.handscore) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)incrementWinsAndLossesForHouseWins:(BOOL)houseWins {
+    if (houseWins) {
+        self.house.wins++;
+        self.player.losses++;
+        NSLog(@"House wins!");
+    } else {
+        self.house.losses++;
+        self.player.wins++;
+        NSLog(@"Player wins!");
+    }
 }
 
 @end
