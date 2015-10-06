@@ -90,7 +90,7 @@ Before we can write the logic for the blackjack game, we need to tell the player
     * If a hand is a blackjack, we should set the `blackjack` property to `YES`.
     * We should set the `busted` property to `YES` if the `handscore` is greater than `21`.
 
-All of the tests for `acceptCard:` should pass before you move on.
+  All of the tests for `acceptCard:` should pass before you move on.
 
 4. Write the implementation for the `shouldHit` method. This is where the player decides whether to accept a new card ("to hit") or stop at its current score until the end of the game ("to stay"). After staying, the player cannot take a new card for the rest of the current game. A simple implementation of the decision making method is to just have the player follow "house rules": which is to say that the house is required to openly declare at what score it will stay—typically either 16 or 17. If the `handscore` is greater than that value, set the `stayed` property to `YES` and return `NO`, otherwise return `YES`.
 
