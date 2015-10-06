@@ -47,16 +47,15 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
 2. To get things compiling, add empty implementations for all the void methods in `FISBlackjackGame.m`, and have `houseWins` `return NO;` for now.
 
 3. In `FISBlackjackPlayer.h`, import `FISCard.h`. Then,
-  * Create three `readonly` properties:
-     * an `NSString` called `name`,
-     * an `NSMutableArray` called `cardsInHand`, and
-     * an `NSUInteger` called `handscore`;
+  * Create an `NSString` property called `name`; and
+  * Create an `NSMutableArray` called `cardsInHand`; and
   * Create four `BOOL` properties:
      * `aceInHand`,
      * `blackjack`,
      * `busted`, and
      * `stayed`;
-  * Create two NSUInteger properties:
+  * Create three NSUInteger properties:
+     * `handscore`, and
      * `wins`, and
      * `losses`; and
   * Declare the following methods:
@@ -65,7 +64,7 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
      * `acceptCard:` which takes one argument, a `FISCard` called `card`, and provides no return, and
      * `shouldHit` which returns a `BOOL`.
 
-4. In `FIBlackjackPlayer.m`, redeclare the three `readonly` properties `name`, `cardsInHand`, and `handscore` as privately `readwrite`. To get things compiling, let's add some minimal method implementations. Define the designated initializer to call `[super init];`, the `void` methods `resetForNewGame` and `acceptCard:` to empty implementations, and `shouldHit` to return `NO`.
+4. To get things compiling, let's add some minimal method implementations in `FIBlackjackPlayer.m`. Define the designated initializer to call `[super init];`, the `void` methods `resetForNewGame` and `acceptCard:` to empty implementations, and `shouldHit` to return `NO`.
 
 5. At this point, the test suite should successfully build. Go ahead and run the tests to check for initial failures. If you have any errors, double-check your set up. If you successfully copied your implementations of `FISCard` and `FISCardDeck`, then all of the tests on those classes should already succeed.
 
