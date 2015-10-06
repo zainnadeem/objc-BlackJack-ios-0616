@@ -23,20 +23,18 @@ Fork and clone this lab.
 
 ##### A. Reuse `FISCard` and `FISCardDeck` from OOP-Cards-Model
 
-This lab reuses the `FISCard` and `FISCardDeck` classes created in the OOP-Cards-Model lab. Find a way to bring your code for those classes into your `BlackJack` project. While you can feasibly copy & paste your code between projects using the clipboard, think about how you could use the `pwd` ("print working directory"), `cp` ("copy"), and `mv` ("move") bash commands to duplicate the `FISCard.h`, `FISCard.m`, `FISCardDeck.h`, and `FISCardDeck.m` files right in the terminal. The exact command will vary based upon the relative path between your lab folders on your own machine, so we can't give you exact directions for how to do this. Their most appropriate destination within this lab is the `objc-blackjack/BlackJack` directory (which should also contain the `FISAppDelegate` class files). If you use bash to copy the files, you'll need to add them to your Xcode project once they're in the correct directory by selecting `File` --> `Add Files to "BlackJack"` from the taskbar. Verify that the file paths point into the Blackjack repository and not the OOP-Cards-Model repository.
-
-**Note:** *If using the terminal intimidates you, simply create the* `FISCard` *and* `FISCardDeck` *class files in Xcode as normal and use the clipboard to copy & paste your code.*
+This lab reuses the `FISCard` and `FISCardDeck` classes created in the OOP-Cards-Model lab. Find a way to bring your code for those classes into your `BlackJack` project. You'll need to add them to your Xcode project by selecting `File` --> `Add Files to "BlackJack"`. Make sure to check "Copy files if needed" so they are added to your Blackjack repository -- you'll want to commit them along with your Blackjack solution!
 
 ##### B. Create Additional Class Files
 
 Before we can run the testing suite we need to set up two new classes: `FISBlackjackGame` and `FISBlackjackPlayer`. Create these class files now.
 
 1. In `FISBlackjackGame.h`, import `FISBlackjackPlayer.h` and `FISCardDeck.h`. Then,
-  * Create three public properties:
+  * Create three properties:
      * a `FISCardDeck` called `deck`,
      * a `FISBlackjackPlayer` called `house`, and
      * a `FISBlackjackPlayer` called `player`.  
-  * And declare the following public methods:
+  * And declare the following methods:
      * `playBlackjack` which provides no return,
      * `dealNewRound` which provides no return,
      * `dealCardToPlayer` which provides no return,
@@ -46,19 +44,19 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
      * `houseWins`, which returns a `BOOL`,
      * `incrementWinsAndLossesForHouseWins:` which takes one argument, a `BOOL` called `houseWins`, and provides no return.
 
-2. In `FISBlackjackGame.m`, define the methods to empty implementations, except `houseWins` which should `return NO;`.
+2. To get things compiling, add empty implementations for all the void methods in `FISBlackjackGame.m`, and have `houseWins` `return NO;` for now.
 
 3. In `FISBlackjackPlayer.h`, import `FISCard.h`. Then,
   * Create three `readonly` properties:
      * an `NSString` called `name`,
      * an `NSMutableArray` called `cardsInHand`, and
      * an `NSUInteger` called `handscore`;
-  * Create four public `BOOL` properties:
+  * Create four `BOOL` properties:
      * `aceInHand`,
      * `blackjack`,
      * `busted`, and
      * `stayed`;
-  * Create two public NSUInteger properties:
+  * Create two NSUInteger properties:
      * `wins`, and
      * `losses`; and
   * Declare the following methods:
@@ -67,7 +65,7 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
      * `acceptCard:` which takes one argument, a `FISCard` called `card`, and provides no return, and
      * `shouldHit` which returns a `BOOL`.
 
-4. In `FIBlackjackPlayer.m`, redeclare the three `readonly` properties `name`, `cardsInHand`, and `handscore` as privately `readwrite`. Define the designated initializer to `return [super init];`, the `void` methods `resetForNewGame` and `acceptCard:` to empty implementations, and `shouldHit` to `return NO;`.
+4. In `FIBlackjackPlayer.m`, redeclare the three `readonly` properties `name`, `cardsInHand`, and `handscore` as privately `readwrite`. To get things compiling, let's add some minimal method implementations. Define the designated initializer to call `[super init];`, the `void` methods `resetForNewGame` and `acceptCard:` to empty implementations, and `shouldHit` to return `NO`.
 
 5. At this point, the test suite should successfully build. Go ahead and run the tests to check for initial failures. If you have any errors, double-check your set up. If you successfully copied your implementations of `FISCard` and `FISCardDeck`, then all of the tests on those classes should already succeed.
 
@@ -83,18 +81,19 @@ Before we can write the logic for the blackjack game, we need to tell the player
 
 2. Override the default initializer (`init`) to call the designated initializer with an empty string submitted as the `name` argument.
 
-3. Next, let's teach our player class how to accept a card and interpret the current `handscore`. Start by declaring a helper method called `scoreHand` that provides no return. Leave it empty for now. Within `acceptCard:`, add the `card` argument to the `cardsInHand` array, then call the `scoreHand` method.
+3. Next, let's teach our player class how to accept a card and update the game state. We're going to want to do this whenever a card is added to the hand, which happens in `acceptCard:`. That method should add the incoming card to `cardsInHand` and update the score. This is a surprisingly complicated process. Let's break it down.
 
-4. Within the `scoreHand` helper method, total the `cardValue` property of all the cards in the `cardsInHand` array. Set the value of the `handscore` property to the total.
+  1. After adding a new card in `acceptCard:`, we need to update the `handscore` to the total of the `cardValue` property of all the cards in the `cardsInHand` array.
 
-5. Now let's add functionality to detect an Ace (represented in the `FISCard`'s `rank` property as the string `@"A"`) and adjust the score accordingly. Find a way to determine if the `cardsInHand` array contains an Ace and set the `aceInHand` boolean to `YES` if it does. Then, if the total value of the cards in the hand is eleven (11) or less, add ten (10) points to the score. This, effectively, is teaching the player to use the Ace as a "soft eleven" when doing so will not cause a bust, but teaching it to use the Ace as a "hard one" otherwise.
+  2. Now let's add functionality to detect an Ace and adjust the score accordingly. Find a way to determine if the `cardsInHand` array contains an Ace and set the `aceInHand` boolean to `YES` if it does. Then, if the total value of the cards in the hand is eleven or less, add ten points to the score. This, effectively, is teaching the player to use the Ace as a "soft eleven" when doing so will not cause a bust, but teaching it to use the Ace as a "hard one" otherwise.
 
-6. Now we should give the player an ability to determine when its hand is a "blackjack" (two cards with a score of 21) or is "busted" (a score of 22 or higher). Create two private helper methods that evaluate the hand for a blackjack, and evaluate the hand for a bust. Name them whatever you wish. Call them at the very end of the `scoreHand` method after setting the `handscore` property. 
-  * The evaluation for a "blackjack" should set the `blackjack` boolean to `YES` if the number of cards in the `cardsInHand` array is exactly `2` and if the `handscore` is exactly `21`.
-  * The evaluation for a "bust" should set the `busted` boolean to `YES` if the `handscore` is greater than `21`.  
+  3. Now we should give the player an ability to determine when its hand is a "blackjack" (exactly two cards with a score of 21) or is "busted" (a score of 22 or higher).
+    * If a hand is a blackjack, we should set the `blackjack` property to `YES`.
+    * We should set the `busted` property to `YES` if the `handscore` is greater than `21`.
+
 All of the tests for `acceptCard:` should pass before you move on.
 
-7. Write the implementation for the `shouldHit` method. This is how the player decides whether to accept a new card ("to hit") or stop at its current score until the end of the game ("to stay"). After staying, the player cannot take a new card for the rest of the current game. A simple implementation of the decision making method is to just have the player follow "house rules": which is to say that the house is required to openly declare at what score it will stay—typically either 16 or 17. If the `handscore` is greater than that value, set the `stayed` property to `YES` and return `NO`, otherwise return `YES`.
+4. Write the implementation for the `shouldHit` method. This is where the player decides whether to accept a new card ("to hit") or stop at its current score until the end of the game ("to stay"). After staying, the player cannot take a new card for the rest of the current game. A simple implementation of the decision making method is to just have the player follow "house rules": which is to say that the house is required to openly declare at what score it will stay—typically either 16 or 17. If the `handscore` is greater than that value, set the `stayed` property to `YES` and return `NO`, otherwise return `YES`.
 
 8. Write the implementation for the `resetForNewGame` which resets a player for a new game. It should:
   * empty the `cardsInHand` array,
@@ -125,26 +124,25 @@ Use the `FISAppDelegate`'s `application:didFinishLaunchingWithOptions:` method t
 
 Now that we've taught our `FISBlackjackPlayer` class how to play Blackjack, let's set up the game. As you may infer from how we set up the class file, it's the game that will be responsible for holding the deck and dealing the cards to the two players `house` and `player` (in Blackjack, all players play individually against the house).
 
-1. Start by overriding `FISBlackjackGame`'s default initializer (`init`). It's properties should be set to:
+1. Start by overriding `FISBlackjackGame`'s default initializer (`init`). Its properties should be set to:
   * a default instance of `FISCardDeck`,
   * an instance of `FISBlackjackPlayer` with the name `@"House"`, and
-  * an instance of `FISBlackjackPlayer` with the name `@"Player"`.  
-  **Advanced:** *You may change the name of the player to your own name if you wish, just be sure to edit the test file to expect a string containing your name instead of* `@"Player"` *so that it will still pass.*
+  * an instance of `FISBlackjackPlayer` with the name `@"Player"`.
 
 2. Next, write the implementations for `dealCardToPlayer` and `dealCardToHouse`. They should use `FISCardDeck`'s `drawNextCard` method to get the next card from the `deck`, and use `FISBlackjackPlayer`'s `acceptCard:` method to pass the card to the respective player.
 
-3. Write the implementation for `dealNewRound`. This is the first deal of a new game which provides two cards to each player. Remember that cards should be dealt one at a time to all players in a round. (**Hint:** *Can you use a loop with two iterations to avoid repeating your code?*).
+3. Write the implementation for `dealNewRound`. This is the first deal of a new game which provides two cards to each player. Remember that cards should be dealt one at a time to all players in a round.
 
-4. Now write the implementations for the `processPlayerTurn` and `processHouseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed. But, they may *choose* to either hit or stay. (**Hint:** *Can you use the boolean values owned by the player and the house to evaluate their permission to hit? Also, remember that we set up a* `shouldHit` *method on the player class.*)
+4. Now write the implementations for the `processPlayerTurn` and `processHouseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed. But, they *choose* to either hit or stay. (**Hint:** *Can you use the boolean properties of the player and the house to evaluate their permission to hit? Also, remember that we set up a* `shouldHit` *method on the player class.*)
 
 5. Now write the implementation for the `houseWins` method. This returns a boolean of whether or not the house has won (you may treat a "push", which is when both the player and the house have blackjack hands, as a loss for the house). Keep in mind that if the house has busted, the player wins. If the player has busted, then the house wins. And the player only wins with a score that *exceeds* the house's score (the house wins ties).
 
 6. Write the implementation for `incrementWinsAndLossesForHouseWins:`. Evaluate the argument boolean. If the house has won, then add one to the house's `wins` property and to the player's `losses` property. However, if the house has **not** won, then add one to the house's `losses` property and to the player's `wins` property. Add an `NSLog()` message for each case so you can see the result of the hand in the debug console.
 
-7. At this point, all of the tests should be passing. You've written all the logic for the individual steps of playing Blackjack. Now, put them together inside the `playBlackjack` method. 
+7. At this point, all of the tests should be passing. You've written all the logic for the individual steps of playing Blackjack! Now, put them together inside the `playBlackjack` method. 
   * Start by resetting the deck and telling the players to start a new game. 
   * Then, deal a new round (`dealNewRound`). 
-  * Since some Blackjack rules allow a hand limit of five cards, create a loop with a maximum of three iterations. Within the loop, give the player its turn, and then the house. Keep in mind that as soon as the player or the house busts, the round is over. Detect a bust after each dealt card by evaluating the `busted` property for the player or the house respectively. **Hint:** *Use the* `break;` *keyword to escape a loop without escaping the method.*
+  * Since some Blackjack rules allow a hand limit of five cards, create a loop with a maximum of three iterations. Within the loop, give the player its turn, and then the house. Keep in mind that as soon as the player or the house busts, the round is over. Detect a bust after each dealt card by checking the `busted` property for the player or the house respectively. **Hint:** *Use the* `break;` *keyword to escape a loop without escaping the method.*
   * After the loop ends, evaluate the winner by calling the `houseWins` method and use the `incrementWinsAndLossesForHouseWins:` to keep the tally of the rounds.
   * Finally, use a pair of `NSLog()`s to print the descriptions of `player` and `house` to the console. 
 
