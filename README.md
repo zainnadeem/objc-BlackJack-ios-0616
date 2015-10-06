@@ -225,7 +225,7 @@ These are some options for continuing to work on this concept beyond the provide
 
 3. Add additional "seats" to the game, meaning, add additional `FISBlackjackPlayer` instances. Will you add them as properties, or convert the `player` property into an array of players? Remember that Blackjack is scored individually against the house, but all of the players are dealt from the same deck. If you've added players to the "table", do you need more cards in the deck? Casinos usually run blackjack games with triple (3) or sextuple (6) decks shuffled together. How can you alter the `FISCardDeck` class to accommodate this?
 
-4. Add properties to the `FISBlackPlayer` class to save information about their current wallet and their current bet. Track the changes to this information when each round is evaluated (i.e. if the House wins, the House gets the bet).
+4. Add properties to the `FISBlackjackPlayer` class to save information about their current wallet and their current bet. Track the changes to this information when each round is evaluated (i.e. if the House wins, the House gets the bet).
 
 5. Create a subclass of `FISBlackjackPlayer` called `FISBlackjackShark`. Override the `shouldHit` method from the parent class to evaluate the best move in accordance with a [Blackjack strategy card](https://blackjack.press/wp-content/uploads/2014/12/advanced-blackjack-strategy-bj-press.jpg). 
   * (Easy) Make a decision based upon whether the current hand score is soft (contains an Ace) or hard (without an Ace). 
