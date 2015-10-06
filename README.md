@@ -54,7 +54,7 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
      * an `NSMutableArray` called `cardsInHand`, and
      * an `NSUInteger` called `handscore`;
   * Create four public `BOOL` properties:
-     * `aceInHand`,xcw
+     * `aceInHand`,
      * `blackjack`,
      * `busted`, and
      * `stayed`;
@@ -76,16 +76,16 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
 Before we can write the logic for the blackjack game, we need to tell the players how to play.
 
 1. Let's start at the beginning of the class's lifecycle by filling out the designated initializer. It should:
-  * set the `_name` ivar to the `name` argument,
-  * initialize the mutable array ivar to an empty mutable array,
-  * set the integer ivars to zero, and
-  * set the boolean ivars to `NO`.
+  * use the `name` argument to initialize the `name` property,
+  * initialize the mutable array to an empty mutable array,
+  * set the integers to zero, and
+  * set the booleans to `NO`.
 
 2. Override the default initializer (`init`) to call the designated initializer with an empty string submitted as the `name` argument.
 
 3. Next, let's teach our player class how to accept a card and interpret the current `handscore`. Start by declaring a helper method called `scoreHand` that provides no return. Leave it empty for now. Within `acceptCard:`, add the `card` argument to the `cardsInHand` array, then call the `scoreHand` method.
 
-4. Within the `scoreHand` helper method, total the `cardValue` property of all the cards in the `cardsInHand` array (**Hint:** *You'll need to use a loop*). Set the value of the `handscore` property to the total.
+4. Within the `scoreHand` helper method, total the `cardValue` property of all the cards in the `cardsInHand` array. Set the value of the `handscore` property to the total.
 
 5. Now let's add functionality to detect an Ace (represented in the `FISCard`'s `rank` property as the string `@"A"`) and adjust the score accordingly. Find a way to determine if the `cardsInHand` array contains an Ace and set the `aceInHand` boolean to `YES` if it does. Then, if the total value of the cards in the hand is eleven (11) or less, add ten (10) points to the score. This, effectively, is teaching the player to use the Ace as a "soft eleven" when doing so will not cause a bust, but teaching it to use the Ace as a "hard one" otherwise.
 
@@ -94,10 +94,9 @@ Before we can write the logic for the blackjack game, we need to tell the player
   * The evaluation for a "bust" should set the `busted` boolean to `YES` if the `handscore` is greater than `21`.  
 All of the tests for `acceptCard:` should pass before you move on.
 
-7. Write the implementation for the `shouldHit` method. This is how the player decides whether to accept a new card ("to hit") or stop at its current score until the end of the game ("to stay"). After staying, the player cannot take a new card for the rest of the current game. A simple implementation of the decision making method is to just have the player follow "house rules": which is to say that the house is required to openly declare at what score it will stay—typically either 16 or 17.
-  * Choose either 16 or 17 as the maximum score to hit. Use an `if` statement that compares the current `handscore` to the value you've chosen. If the `handscore` is greater than that value, set the `stayed` property to `YES` and `return NO;`, otherwise return `YES`.
+7. Write the implementation for the `shouldHit` method. This is how the player decides whether to accept a new card ("to hit") or stop at its current score until the end of the game ("to stay"). After staying, the player cannot take a new card for the rest of the current game. A simple implementation of the decision making method is to just have the player follow "house rules": which is to say that the house is required to openly declare at what score it will stay—typically either 16 or 17. If the `handscore` is greater than that value, set the `stayed` property to `YES` and return `NO`, otherwise return `YES`.
 
-8. Write the implementation for the `resetForNewGame` which tells the player how to reset for a new game. It should:
+8. Write the implementation for the `resetForNewGame` which resets a player for a new game. It should:
   * empty the `cardsInHand` array,
   * set `handscore` to zero, and
   * set the four boolean values (`aceInHand`, `stayed`, `blackjack`, and `busted`) to `NO`.  
@@ -136,7 +135,7 @@ Now that we've taught our `FISBlackjackPlayer` class how to play Blackjack, let'
 
 3. Write the implementation for `dealNewRound`. This is the first deal of a new game which provides two cards to each player. Remember that cards should be dealt one at a time to all players in a round. (**Hint:** *Can you use a loop with two iterations to avoid repeating your code?*).
 
-4. Now write the implementations for the `processPlayerTurn` and `processHouseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed, however, they may choose to either hit or stay. (**Hint:** *Can you use the boolean values owned by the player and the house to evaluate their permission to hit? Also, remember that we set up a* `shouldHit` *method on the player class.*)
+4. Now write the implementations for the `processPlayerTurn` and `processHouseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed. But, they may *choose* to either hit or stay. (**Hint:** *Can you use the boolean values owned by the player and the house to evaluate their permission to hit? Also, remember that we set up a* `shouldHit` *method on the player class.*)
 
 5. Now write the implementation for the `houseWins` method. This returns a boolean of whether or not the house has won (you may treat a "push", which is when both the player and the house have blackjack hands, as a loss for the house). Keep in mind that if the house has busted, the player wins. If the player has busted, then the house wins. And the player only wins with a score that *exceeds* the house's score (the house wins ties).
 
