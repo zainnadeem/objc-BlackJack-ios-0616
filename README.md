@@ -23,7 +23,7 @@ Fork and clone this lab.
 
 ##### A. Reuse `FISCard` and `FISCardDeck` from OOP-Cards-Model
 
-This lab reuses the `FISCard` and `FISCardDeck` classes created in the OOP-Cards-Model lab. Find a way to bring your code for those classes into your `BlackJack` project. You'll need to add them to your Xcode project by selecting `File` --> `Add Files to "BlackJack"`. Make sure to check "Copy files if needed" so they are added to your Blackjack repository -- you'll want to commit them along with your Blackjack solution!
+This lab reuses the `FISCard` and `FISCardDeck` classes created in the OOP-Cards-Model lab. Find a way to bring your code for those classes into your `BlackJack` project. You'll need to add them to your Xcode project by selecting `File` --> `Add Files to "BlackJack"` or dragging them in. Make sure to check "Copy files if needed" so they are added to your Blackjack repository -- you'll want to commit them along with your Blackjack solution!
 
 ##### B. Create Additional Class Files
 
