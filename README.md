@@ -13,7 +13,7 @@
 
 [Blackjack](https://en.wikipedia.org/wiki/Blackjack), also known as "twenty-one", is a casino card game in which a player attempts to build a hand that is closer to a score of 21 than the house (or dealer's) hand without going over a total of 21 (or "busting"). The Ace's base value is one (1), but can be used as a value of eleven (11) if doing so does not bust a hand. Players are initially dealt two cards and choose to be dealt additional cards (to "hit") or to hold their hand until the end of the round (to "stay").
 
-In this exercise, we're going to set up a player class that has knowledge of how to play Blackjack. That means it will need to be able to score its own hand and decide whether to hit or stay. We'll then create class that can execute a Blackjack game between the house and a single player.
+In this exercise, we're going to set up a player class that has knowledge of how to play Blackjack. That means it will need to be able to score its own hand and decide whether to hit or stay. We'll then create a class that can execute a Blackjack game between the house and a single player.
 
 ## Instructions
 
