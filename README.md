@@ -54,10 +54,10 @@ Before we can run the testing suite we need to set up two new classes: `FISBlack
      * an `NSMutableArray` called `cardsInHand`, and
      * an `NSUInteger` called `handscore`;
   * Create four public `BOOL` properties:
-     * `aceInHand`,
-     * `stayed`,
-     * `blackjack`, and
-     * `busted`,
+     * `aceInHand`,xcw
+     * `blackjack`,
+     * `busted`, and
+     * `stayed`;
   * Create two public NSUInteger properties:
      * `wins`, and
      * `losses`; and
@@ -103,7 +103,9 @@ All of the tests for `acceptCard:` should pass before you move on.
   * set the four boolean values (`aceInHand`, `stayed`, `blackjack`, and `busted`) to `NO`.  
   * It should **not** affect the `wins` and `losses` integers.
 
-9. Lastly, override the `description` method to provide a customized printout in the debug console. **Hint:** *This is a great time to use* `NSMutableString`. Because of randomization, the tests are simply looking that this string contains substrings that match the property names, so it is somewhat up to you to decide how to present the information. Remember that you can format line breaks with `\n` and indentations with spaces. Consider the following console output when formatting your string:
+9. Lastly, override the `description` method to provide a customized printout in the debug console. **Hint:** *This is a great time to use* `NSMutableString`. Because of randomization, the test for this method is simply looking that this string contains substrings that match each the property names, so it is somewhat up to you to decide how to present the information. Remember that you can format line breaks with `\n` and indentations with spaces. 
+
+Consider the following console output when formatting your description string:
 
 ```
 2015-10-02 15:48:32.953 BlackJack[9872:367674] FISBlackjackPlayer:
@@ -124,17 +126,17 @@ Use the `FISAppDelegate`'s `application:didFinishLaunchingWithOptions:` method t
 
 Now that we've taught our `FISBlackjackPlayer` class how to play Blackjack, let's set up the game. As you may infer from how we set up the class file, it's the game that will be responsible for holding the deck and dealing the cards to the two players `house` and `player` (in Blackjack, all players play individually against the house).
 
-1. Start by overriding `FISBlackjackGame`'s default initializer (`init`). It should
-  * initialize the `_deck` ivar to a default instance of `FISCardDeck`,
-  * initialize the `_house` ivar to an instance of `FISBlackjackPlayer` with the name `@"House"`, and
-  * initialize the `_player` ivar to an instance of `FISBlackjackPlayer` with the name `@"Player"`.  
+1. Start by overriding `FISBlackjackGame`'s default initializer (`init`). It's properties should be set to:
+  * a default instance of `FISCardDeck`,
+  * an instance of `FISBlackjackPlayer` with the name `@"House"`, and
+  * an instance of `FISBlackjackPlayer` with the name `@"Player"`.  
   **Advanced:** *You may change the name of the player to your own name if you wish, just be sure to edit the test file to expect a string containing your name instead of* `@"Player"` *so that it will still pass.*
 
 2. Next, write the implementations for `dealCardToPlayer` and `dealCardToHouse`. They should use `FISCardDeck`'s `drawNextCard` method to get the next card from the `deck`, and use `FISBlackjackPlayer`'s `acceptCard:` method to pass the card to the respective player.
 
-3. Write the implementation for `dealNewRound`. This is the first deal of a new game which provides two cards to each player. Remember that cards should be dealt one at a time to all players in a round. (*Can you use a loop with two iterations to avoid repeating your code?*).
+3. Write the implementation for `dealNewRound`. This is the first deal of a new game which provides two cards to each player. Remember that cards should be dealt one at a time to all players in a round. (**Hint:** *Can you use a loop with two iterations to avoid repeating your code?*).
 
-4. Now write the implementations for the `processPlayerTurn` and `processHouseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed, however, they may choose to either hit or stay. (*Can you use the boolean values owned by the player and the house to evaluate their permission to hit? Also, remember that we set up a* `shouldHit` *method on the player class.*)
+4. Now write the implementations for the `processPlayerTurn` and `processHouseTurn` methods. In blackjack, a player may hit (get dealt a new card) if they have not busted nor stayed, however, they may choose to either hit or stay. (**Hint:** *Can you use the boolean values owned by the player and the house to evaluate their permission to hit? Also, remember that we set up a* `shouldHit` *method on the player class.*)
 
 5. Now write the implementation for the `houseWins` method. This returns a boolean of whether or not the house has won (you may treat a "push", which is when both the player and the house have blackjack hands, as a loss for the house). Keep in mind that if the house has busted, the player wins. If the player has busted, then the house wins. And the player only wins with a score that *exceeds* the house's score (the house wins ties).
 
@@ -223,7 +225,7 @@ These are some options for continuing to work on this concept beyond the provide
 
 2. Refactor the `processPlayerTurn` and `processHouseTurn` methods into a single method that accepts a `FISBlackjackPlayer` argument and uses the same logic to offer a turn to both players.
 
-3. Refactor the `houseWins` method to accommodate the possibility of a "push" (when both the House and the Player have blackjack hands). Can you accomplish this while returning a `BOOL`? (*Probably not.*) Should the method still be called `houseWins` after you've changed the way it works?
+3. Refactor the `houseWins` method to accommodate the possibility of a "push" (when both the House and the Player have blackjack hands). Can you accomplish this while returning a `BOOL`? (**Hint:** *Probably not.*) Should the method still be called `houseWins` after you've changed the way it works?
 
 3. Add additional "seats" to the game, meaning, add additional `FISBlackjackPlayer` instances. Will you add them as properties, or convert the `player` property into an array of players? Remember that Blackjack is scored individually against the house, but all of the players are dealt from the same deck. If you've added players to the "table", do you need more cards in the deck? Casinos usually run blackjack games with triple (3) or sextuple (6) decks shuffled together. How can you alter the `FISCardDeck` class to accommodate this?
 

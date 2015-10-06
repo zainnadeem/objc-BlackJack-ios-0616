@@ -52,9 +52,9 @@ describe(@"FISBlackjackPlayer", ^{
         
         it(@"should set boolean properties to NO", ^{
             expect(defaultPlayer.aceInHand).to.beFalsy();
-            expect(defaultPlayer.stayed).to.beFalsy();
             expect(defaultPlayer.blackjack).to.beFalsy();
             expect(defaultPlayer.busted).to.beFalsy();
+            expect(defaultPlayer.stayed).to.beFalsy();
         });
     });
     
@@ -75,9 +75,9 @@ describe(@"FISBlackjackPlayer", ^{
         
         it(@"should set boolean properties to NO", ^{
             expect(designatedPlayer.aceInHand).to.beFalsy();
-            expect(designatedPlayer.stayed).to.beFalsy();
             expect(designatedPlayer.blackjack).to.beFalsy();
             expect(designatedPlayer.busted).to.beFalsy();
+            expect(designatedPlayer.stayed).to.beFalsy();
         });
     });
     
@@ -159,8 +159,8 @@ describe(@"FISBlackjackPlayer", ^{
             [acceptCardPlayer acceptCard:aceOfSpades];
             
             expect(acceptCardPlayer.handscore).to.equal(13);
-            expect(acceptCardPlayer.busted).to.beFalsy();
             expect(acceptCardPlayer.aceInHand).to.beTruthy();
+            expect(acceptCardPlayer.busted).to.beFalsy();
         });
         
         it(@"should detect a blackjack hand (a score of 21 with two cards)", ^{
@@ -177,41 +177,41 @@ describe(@"FISBlackjackPlayer", ^{
             [acceptCardPlayer acceptCard:queenOfHearts];
             [acceptCardPlayer acceptCard:aceOfSpades];
             
-            expect(acceptCardPlayer.busted).to.beFalsy();
             expect(acceptCardPlayer.handscore).to.equal(21);
             expect(acceptCardPlayer.aceInHand).to.beTruthy();
+            expect(acceptCardPlayer.busted).to.beFalsy();
         });
     });
     
-    __block FISBlackjackPlayer *decideToHitPlayer;
+    __block FISBlackjackPlayer *shouldHitPlayer;
     
     beforeEach(^{
         
-        decideToHitPlayer = [[FISBlackjackPlayer alloc] init];
+        shouldHitPlayer = [[FISBlackjackPlayer alloc] init];
         
     });
     
-    describe(@"decideToHit", ^{
-        it(@"should decide to hit if the handscore is 12", ^{
-            [decideToHitPlayer acceptCard:queenOfHearts];
-            [decideToHitPlayer acceptCard:twoOfClubs];
+    describe(@"shouldHit", ^{
+        it(@"should hit if the handscore is 12", ^{
+            [shouldHitPlayer acceptCard:queenOfHearts];
+            [shouldHitPlayer acceptCard:twoOfClubs];
             
-            expect([decideToHitPlayer shouldHit]).to.beTruthy();
+            expect([shouldHitPlayer shouldHit]).to.beTruthy();
         });
         
-        it(@"should decide not to hit if the handscore is 20", ^{
-            [decideToHitPlayer acceptCard:queenOfHearts];
-            [decideToHitPlayer acceptCard:tenOfDiamonds];
+        it(@"should not hit if the handscore is 20", ^{
+            [shouldHitPlayer acceptCard:queenOfHearts];
+            [shouldHitPlayer acceptCard:tenOfDiamonds];
             
-            expect([decideToHitPlayer shouldHit]).to.beFalsy();
+            expect([shouldHitPlayer shouldHit]).to.beFalsy();
         });
         
-        it(@"should set stayed to YES if decideToHit returns NO", ^{
-            [decideToHitPlayer acceptCard:queenOfHearts];
-            [decideToHitPlayer acceptCard:tenOfDiamonds];
+        it(@"should set stayed to YES if shouldHit returns NO", ^{
+            [shouldHitPlayer acceptCard:queenOfHearts];
+            [shouldHitPlayer acceptCard:tenOfDiamonds];
             
-            expect([decideToHitPlayer shouldHit]).to.beFalsy();
-            expect(decideToHitPlayer.stayed).to.beTruthy();
+            expect([shouldHitPlayer shouldHit]).to.beFalsy();
+            expect(shouldHitPlayer.stayed).to.beTruthy();
         });
     });
     
@@ -284,39 +284,15 @@ describe(@"FISBlackjackPlayer", ^{
     });
     
     describe(@"description", ^{
-        it(@"should readout the name", ^{
+        it(@"should label a readout for each of the properties", ^{
             expect(defaultPlayer.description.lowercaseString).to.contain(@"name");
-        });
-        
-        it(@"should readout the cardsInHand", ^{
             expect(defaultPlayer.description.lowercaseString).to.contain(@"cards");
-        });
-        
-        it(@"should readout the handscore", ^{
             expect(defaultPlayer.description.lowercaseString).to.contain(@"handscore");
-        });
-        
-        it(@"should readout the aceInHand bool", ^{
             expect(defaultPlayer.description.lowercaseString).to.contain(@"ace");
-        });
-        
-        it(@"should readout the stayed bool", ^{
-            expect(defaultPlayer.description.lowercaseString).to.contain(@"stayed");
-        });
-        
-        it(@"should readout the blackjack bool", ^{
             expect(defaultPlayer.description.lowercaseString).to.contain(@"blackjack");
-        });
-        
-        it(@"should readout the busted bool", ^{
             expect(defaultPlayer.description.lowercaseString).to.contain(@"busted");
-        });
-        
-        it(@"should readout the number of wins", ^{
+            expect(defaultPlayer.description.lowercaseString).to.contain(@"stayed");
             expect(defaultPlayer.description.lowercaseString).to.contain(@"wins");
-        });
-        
-        it(@"should readout the number of losses", ^{
             expect(defaultPlayer.description.lowercaseString).to.contain(@"losses");
         });
     });

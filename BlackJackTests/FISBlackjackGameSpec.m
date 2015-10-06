@@ -199,7 +199,7 @@ describe(@"FISBlackjackGame", ^{
             expect(defaultGame.player.wins).to.equal(1);
         });
         
-        it(@"should increment house.losses or player.wins by one if the argument is YES", ^{
+        it(@"should not increment house.losses or player.wins by one if the argument is YES", ^{
             [defaultGame incrementWinsAndLossesForHouseWins:YES];
             
             expect(defaultGame.house.losses).to.equal(0);

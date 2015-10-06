@@ -26,9 +26,9 @@
         _cardsInHand = [[NSMutableArray alloc] init];
         _handscore = 0;
         _aceInHand = NO;
-        _stayed = NO;
         _blackjack = NO;
         _busted = NO;
+        _stayed = NO;
         
         _wins = 0;
         _losses = 0;
@@ -42,9 +42,9 @@
     self.handscore = 0;
     
     self.aceInHand = NO;
-    self.stayed = NO;
     self.blackjack = NO;
     self.busted = NO;
+    self.stayed = NO;
 }
 
 - (void)acceptCard:(FISCard *)card {
@@ -107,10 +107,9 @@
     
     [result appendFormat:@"\n  handscore  : %lu", self.handscore];
     [result appendFormat:@"\n  ace in hand: %d", self.aceInHand];
-    [result appendFormat:@"\n  stayed     : %d", self.stayed];
     [result appendFormat:@"\n  blackjack  : %d", self.blackjack];
     [result appendFormat:@"\n  busted     : %d", self.busted];
-    
+    [result appendFormat:@"\n  stayed     : %d", self.stayed];
     [result appendFormat:@"\n  wins  : %lu", self.wins];
     [result appendFormat:@"\n  losses: %lu", self.losses];
     

@@ -10,9 +10,9 @@
 @property (nonatomic, readonly) NSUInteger handscore;
 
 @property (nonatomic) BOOL aceInHand;
-@property (nonatomic) BOOL stayed;
 @property (nonatomic) BOOL blackjack;
 @property (nonatomic) BOOL busted;
+@property (nonatomic) BOOL stayed;
 
 @property (nonatomic) NSUInteger wins;
 @property (nonatomic) NSUInteger losses;
