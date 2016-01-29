@@ -232,4 +232,4 @@ These are some options for continuing to work on this concept beyond the provide
   * (Hard) Make a decision based upon the cards currently in the House's hand. How can you transport this information from the instance of `FISBlackjackGame` to the instance of `FISBlackjackShark`? Should the shark try to get that information on its own, or should the game be responsible for handing this information to the shark every time the house takes a card?
 
 
-<a href='https://learn.co/lessons/objc-BlackJack' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/objc-BlackJack' title='BlackJack Console'>BlackJack Console</a> on Learn.co and start learning to code for free.</p>
